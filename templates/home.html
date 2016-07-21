@@ -1,22 +1,157 @@
 {% extends "base.html" %}
-<link href="css/home.css" rel="stylesheet" style="text/css">
+
 {% block title %}
 {{title}}
 {% endblock %}
 
 {% block content %}
-<div class="posts">
-    {% for book in book_list %}
-        <h2 class="post-title">{{ book.title }}</h2>
-    {% endfor %}
-</div>
-<div class="indent">
-    <div class="books">books</div>
-    <div class="paginator">
-        <span class="thispage">1</span>
-        <a href="{% url 'top25' %}">2</a>
-        <a href="###">3</a>
-        <a href="###">4</a>
+<style type="text/css">
+    .content{
+        height: 470px;
+        width: 80%;
+        margin-left: 10%;
+    }
+    .article{
+        height: 100%;
+        width: 60%;
+        float: left;
+    }
+    .aside{
+        height: 100%;
+        width: 40%;
+        float: left;
+    }
+    .aside .aside_wrap{
+        background-color: antiquewhite;
+        margin-left: 50px;
+    }
+    .post-title{
+        height: 200px;
+        width: 19%;
+        background-color: bisque;
+        float: left;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+    .newbook{
+        border-bottom-style: groove;
+        height: 20px;
+        padding-bottom: 3px;
+    }
+    .cover{
+        height: 160px;
+        width: 100%;
+    }
+    .bookname{
+        height: 20px;
+        width: 100%;
+    }
+    .author{
+        height: 20px;
+        width: 100%;
+    }
+    a img{
+        height: 160px;
+        width: 100%;
+    }
+    .headline{
+        padding-bottom: 3px;
+        border-bottom-style: groove;
+        height: 30px;
+    }
+    .label{
+        height: 60px;
+        width: 100%;
+        margin-left: 10px;
+    }
+    .alabel{
+        height: 25px;
+        width: 18%;
+        margin: 1px 2px 1px 4px;
+        float: left;
+    }
+    .alabel a{
+        color:brown;
+    }
+    .book_title{
+        color: #000;
+    }
+</style>
+
+<div class = 'content'>
+    <div class = 'article'>
+        <div class='newbook'>
+            <h3>新书速递</h3>
+        </div>
+        {% for book in book_list %}
+            <div class="post-title">
+                <div class = 'cover'>
+                    <a href="{% url 'detail' book_id=book.book_id %}">
+                        <img src={{book.cover_url}}>
+                    </a>
+                </div>
+                <div class = 'bookname'>
+                    <a href="{% url 'detail' book_id=book.book_id %}">
+                        <span class="book_title">{{book.title}}</span>
+                    </a>
+                </div>
+                <div class = 'author'>{{book.author}}</div>
+            </div>
+        {% endfor %}
     </div>
+    <div class = 'aside'>
+        <div class = "aside_wrap">
+            <div class='headline'>
+                <h2>热门标签</h2>
+            </div>
+            <p>文学</p>
+            <div class = 'label'>
+                <div class = 'alabel'><a href = "https://baidu.com">小说</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">随笔</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">日本文学</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">散文</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">童话</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">诗歌</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">名著</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">港台</a></div>
+            </div>
+            <p>流行</p>
+            <div class = 'label'>
+                <div class = 'alabel'><a href = "https://baidu.com">漫画</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">绘本</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">推理</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">青春</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">言情</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">科幻</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">武侠</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">奇幻</a></div>
+            </div>
+            <p>文化</p>
+            <div class = 'label'>
+                <div class = 'alabel'><a href = "https://baidu.com">历史</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">哲学</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">传记</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">设计</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">建筑</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">电影</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">回忆录</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">音乐</a></div>
+            </div>
+            <p>科技</p>
+            <div class = 'label'>
+                <div class = 'alabel'><a href = "https://baidu.com">科普</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">互联网</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">编程</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">交互设计</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">算法</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">通信</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">神经网络</a></div>
+                <div class = 'alabel'><a href = "https://baidu.com">机器学习</a></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 {% endblock %}
