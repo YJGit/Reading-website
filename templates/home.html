@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+<link href="css/home.css" rel="stylesheet" style="text/css">
 {% block title %}
 {{title}}
 {% endblock %}
@@ -9,5 +9,14 @@
     {% for book in book_list %}
         <h2 class="post-title">{{ book.title }}</h2>
     {% endfor %}
+</div>
+<div class="indent">
+    <div class="books">books</div>
+    <div class="paginator">
+        <span class="thispage">1</span>
+        <a href="{% url 'top25' %}">2</a>
+        <a href="###">3</a>
+        <a href="###">4</a>
+    </div>
 </div>
 {% endblock %}

@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', 'books.views.home', name='home'),
+    url(r'^25/$', 'books.views.top25', name='top25'),
 ]
