@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from books.models import book
+from books.models import book, laber
 from django.http import HttpResponse, Http404
 
 # Create your views here.
@@ -20,4 +20,11 @@ def detail(request, book_id):
         book_detail = book.objects.get(book_id = book_id)
     except book.DoesNotExist:
         raise Http404
-    return render(request, 'detail.html')
+    return render(request, 'detail.html', {'title': book_detail.title, 'book_detail': book_detail},)
+
+def laber_detail(request, laber_title):
+    try:
+        laber_de = laber.objects.get(title = laber_title)
+    except laber.DoesNotExist:
+        raise Http404
+    return render(request, 'laber_detail.html')
