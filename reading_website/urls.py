@@ -19,4 +19,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', 'books.views.home', name='home'),
+    url(r'^25/$', 'books.views.top25', name='top25'),
+    url(r'^(?P<book_id>\d+)/$', 'books.views.detail', name='detail'),
+    url(r'^(?P<laber_title>.*)/$', 'books.views.laber_detail', name='laber'),
 ]

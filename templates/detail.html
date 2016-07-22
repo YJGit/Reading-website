@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    #wrapper{
+        width:950px;
+        margin:0 auto;
+    }
+    .detail_title {
+        word-wrap: break-word;
+        font-size: 25px;
+        font-weight: bold;
+        color: #494949;
+        text-align:left;
+    }
+    .clear{
+        clear:both;
+        line-height:0;
+        font-size:0;
+    }
+    #content{
+        margin-top:-10px;
+    }
+    .article{
+        float: left;
+        width: 590px;
+        padding-right: 40px;
+    }
+    .subjectwrap{
+        word-break: break-all;
+        float:none;
+        width:auto;
+        position:relative;
+        margin-bottom:15px;
+        display:block;
+        font: 14px Arial, Helvetica, sans-serif;
+        line-height: 150%;
+        color: #666666;
+    }
+    .subject{
+        margin: 2px 0 0 0;
+        float:left;
+        width:415px;
+    }
+    #mainpic {
+        float: left;
+        text-align: center;
+        margin: 0 12px 0 0;
+        max-width: 120px;
+        overflow: hidden;
+    }
+    #mainpic a img{
+        margin-bottom:10px;
+        width:100%;
+        height:100%;
+    }
+    #info {
+        float: left;
+        max-width: 248px;
+        word-wrap: break-word;
+    }
+    #info .show{
+        color: black;
+    }
+    #interest_sectl{
+        float: left;
+        width: 155px;
+        margin: 2px 0 0 0;
+        padding: 0 0 0 15px;
+        border-left: 1px solid #eaeaea;
+        color: #9b9b9b;
+    }
+    #interest_sectl .score_to_show{
+        color: #494949;
+        padding: 0;
+        margin:10px 10px 10px 0px;
+        min-width: 30%;
+        font-size: 28px;
+    }
+    #interest_sectl .star, .power, .perc{
+        float:left;
+    }
+    #interest_sectl .five_star .power{
+        margin: 3px 4px;
+        height: 10px;
+        width: 63px;
+        background: #ffd596 none repeat scroll 0 0;
+    }
+    #interest_sectl .four_star, .there_star, .two_star, .one_star{
+        clear:both;
+    }
+    #interest_sectl .four_star .power{
+        margin: 3px 4px;
+        height: 10px;
+        width: 30px;
+        background: #ffd596 none repeat scroll 0 0;
+    }
+    #interest_sectl .there_star .power{
+        margin: 3px 4px;
+        height: 10px;
+        width: 8px;
+        background: #ffd596 none repeat scroll 0 0;
+    }
+    #interest_sectl .two_star .power{
+        margin: 3px 4px;
+        height: 10px;
+        width: 0px;
+        background: #ffd596 none repeat scroll 0 0;
+    }
+    #interest_sectl .one_star .power{
+        margin: 3px 4px;
+        height: 10px;
+        width: 0px;
+        background: #ffd596 none repeat scroll 0 0;
+    }
+    .other{
+        clear:both;
+    }
+    .remark{
+        float: left;
+        width: 590px;
+        height: 20px;
+        background-color:aliceblue;
+    }
+    .aside{
+        float: left;
+        width: 300px;
+        height: 500px;
+        background-color:aliceblue;
+    }
+    #footer{
+        clear:both;
+        color:#999;
+        font-family: cursive;
+        font-size: 12px;
+    }
+    #rating{
+        width: 200px;
+    }
+    #smallremark{
+        width:40px;
+        float:left;
+    }
+    .minisubmit{
+        float:left;
+        margin-left: 5px;
+        margin-right: 7px;
+        background-color:burlywood;
+        border:none;
+    }
+    .sharelabel{
+        width:50px;
+        float:left;
+        margin-left: 5px;
+        margin-right: 7px;
+    }
+    .sharelabel a:link,
+    .sharelabel a:visited,
+    .sharelabel a:active
+    {
+        color: blue;
+    }
+    .sharelabel a:hover
+    {
+        color: white;
+        background-color: blue;
+    }
+    .bookintro{
+        width:500px;
+        background-color: antiquewhite;
+        float:left;
+        margin-top: 2px;
+        margin-bottom: 10px;
+    }
+    .authorintro{
+        width:500px;
+        background-color: antiquewhite;
+        float:left; 
+        margin-top: 2px;
+        margin-bottom: 10px;
+    }
+    .booklabel{
+        width:500px;
+        background-color: antiquewhite;
+        float:left;     
+        margin-top: 2px;
+        margin-bottom: 10px;
+    }
+    .guide{
+        color: green;
+    }
+    .cont{
+        font-family: cursive;
+        font-size: 13px;
+    }
+</style>
+
+<div id="wrapper">
+    <h1>
+        <span class="detail_title">{{book_detail.title}}</span>
+        <div class="clear"></div>
+    </h1>
+    <div id="content">
+        <div class="article">
+            <div class="subjectwrap">
+                <div class="subject">
+                    <div id="mainpic">
+                        <a class="nbg" href={{book_detail.cover_url}} title={{book_detail.title}}>
+                            <img src={{book_detail.cover_url}} title="点击查看大图" alt={{book_detail.title}}>
+                        </a>
+                    </div>
+                    <div id="info">
+                        <div class="book_author">作者: <span class="show">{{book_detail.author}}</span></div>
+                        <div class="book_publisher">出版社: <span class="show">{{book_detail.publisher}}</span></div>
+                        {% if book_detail.translator != '无' %}
+                            <div class="book_translator">译者: <span class="show">{{book_detail.translator}}</span></div>
+                        {% endif %}
+                        <div class="book_publisher_date">出版年: <span class="show">{{book_detail.publisher_date}}</span></div>
+                        <div class="book_page">页数: <span class="show">{{book_detail.page}}</span></div>
+                        <div class="book_price">定价: <span class="show">{{book_detail.price}}</span></div>
+                        <div class="book_binding">装帧: <span class="show">{{book_detail.binding}}</span></div>
+                        <div class="book_Isbn">ISBN: <span class="show">{{book_detail.Isbn}}</span></div>
+                    </div>
+                </div>
+                <div id="interest_sectl">
+                    <div class="rate_logo">悦读评分</div>
+                    <div class="score_to_show">{{book_detail.score}}</div>
+                    <div class="score_rule">
+                        <div class="five_star">
+                            <div class="star">5星</div>
+                            <div class="power"></div>
+                            <div class="perc">62.8%</div>
+                        </div>
+                        <div class="four_star">
+                            <div class="star">4星</div>
+                            <div class="power"></div>
+                            <div class="perc">29.0%</div>
+                        </div>
+                        <div class="there_star">
+                            <div class="star">3星</div>
+                            <div class="power"></div>
+                            <div class="perc">8.4%</div>
+                        </div>
+                        <div class="two_star">
+                            <div class="star">2星</div>
+                            <div class="power"></div>
+                            <div class="perc">0.6%</div>
+                        </div>
+                        <div class="one_star">
+                            <div class="star">1星</div>
+                            <div class="power"></div>
+                            <div class="perc">0.2%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="other">
+                <div class = "remark">
+                    <input type="submit" class="minisubmit " value="想读" title="">
+                    <input type="submit" class="minisubmit " value="在读" title="">
+                    <input type="submit" class="minisubmit " value="读过" title="">         
+                    <div id="smallremark">评价</div>
+                    <span id="rating"> 
+                        <span id="stars" data-solid="https://img3.doubanio.com/f/shire/5a2327c04c0c231bced131ddf3f4467eb80c1c86/pics/rating_icons/star_onmouseover.png" data-hollow="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" data-solid-2x="https://img3.doubanio.com/f/shire/7258904022439076d57303c3b06ad195bf1dc41a/pics/rating_icons/star_onmouseover@2x.png" data-hollow-2x="https://img3.doubanio.com/f/shire/95cc2fa733221bb8edd28ad56a7145a5ad33383e/pics/rating_icons/star_hollow_hover@2x.png">
+
+                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-1">
+                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star1" width="16" height="16">
+                        </a>
+                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-2">
+                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star2" width="16" height="16">
+                        </a>
+                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-3">
+                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star3" width="16" height="16">
+                        </a>
+                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-4">
+                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star4" width="16" height="16">
+                        </a>
+                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-5">
+                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star5" width="16" height="16">
+                        </a>
+                        </span>
+                    </span>
+                </div>
+                <div class = "share">
+                    <div class="sharelabel"><a href = "https://www.baidu.com">写笔记</a></div>
+                    <div class="sharelabel"><a href = "https://www.baidu.com">写书评</a></div>
+                    <div class="sharelabel"><a href = "https://www.baidu.com">分享到</a></div>
+                </div>
+                <div class = "bookintro">
+                    <div class="guide">内容简介  ......</div>
+                    <p class="cont">{{book_detail.content_intro}}</p>
+                </div>
+                <div class = "authorintro">
+                    <div class="guide">本书目录  ......</div>
+                    <p class="cont">{{book_detail.directory}}</p>                
+                </div>
+                <div class = "booklabel">
+                    <div class="guide">本书标签  ......</div>
+                    <p class="cont">{{book_detail.label}}</p>              
+                </div>
+            </div>
+        </div>
+        <div class="aside">售书信息</div>
+    </div>
+    <div id="footer">editor : 清华大学软件学院   Mzj马子俊  Yj杨景  Yky于科屹</div>
+</div>
+{% endblock %}
