@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <style>
+        form{
+            width: 300px;
+            padding: 20px;
+            border: 6px solid palevioletred;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        h2{
+            text-align: center;
+        }
+        input{
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+            height: 30px;
+            border: 1px solid palevioletred;
+        }
+        #id_picture{
+            border: none;
+        }
+        input[type="submit"]{
+            border: none;
+            background-color: rgba(219, 112, 147, 0.5);
+        }
+        input[type="submit"]:hover{
+            background-color: rgba(219, 112, 147, 1);
+        }
+    </style>
+</head>
+<body>
+     {{ user_form.errors }}
+     {{ profile_form.errors }}
+     <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
+         {% csrf_token %}
+         <h2>欢迎注册悦读网</h2>
+         <label for="id_username">用户名</label>
+         {{ user_form.username }}
+         <label for="id_password">密码</label>
+         {{ user_form.password }}
+         <label for="id_email">电子邮箱</label>
+         {{ user_form.email}}
+         <label for="id_picture">头像</label>
+         {{ profile_form.picture }}
+         <!-- Provide a button to click to submit the form. -->
+         <input type="submit" name="submit" value="注册" />
+     </form>
+</body>
+</html>

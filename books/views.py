@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from books.models import book, laber
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from .forms import UserForm, UserProfileForm
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 # Create your views here.
 def home(request):
@@ -28,3 +33,29 @@ def laber_detail(request, laber_title):
     except laber.DoesNotExist:
         raise Http404
     return render(request, 'laber_detail.html')
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+            profile.save()
+            return HttpResponseRedirect('/register/success/')
+        else:
+            print(user_form.errors, profile_form.errors)
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+    return render(request,
+                  'register.html',
+                  {'user_form': user_form, 'profile_form': profile_form})
+
+def register_success(request):
+    return render(request, 'register_success.html', {})
