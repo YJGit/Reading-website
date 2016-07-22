@@ -35,10 +35,10 @@
         border-right-style: hidden;
         margin-top: 5px;
     }
-    .login_register{
+    .login_register, .logout_account{
         line-height: 20px;
     }
-    .login{
+    .login, .logout{
         float:right;
         padding: 0 12px;
     }
@@ -50,7 +50,7 @@
         float:right;
         margin-right: 10%;
     }
-    .register{
+    .register, .account{
         float:right;
         padding: 0 12px;
     }
@@ -190,11 +190,19 @@
         <div><a href="https://www.baidu.com/" class="douban">悦读</a></div>
         <div><a href="https://www.baidu.com/" class="reader">读书</a></div>
     </div>
+    {% if user.is_authenticated %}
+    <div class = "logout_account">
+        <div><a href="/logout/" class="logout">退出登录</a></div>
+        <div><a href="/account/" class="account">{{ user.username }}的账户设置</a></div>
+    </div>
+    {% else %}
     <div class = "login_register">
         <div><a href="/login/" class="login">登录</a></div>
         <div><a href="/register/" class="register">注册</a></div>
     </div>
+    {% endif %}
 </div>
+{% block search %}
 <div class = "wrap">
     <div class = "wrap_up">
         <div class = "logo">
@@ -220,6 +228,7 @@
         </ul>
     </div>    
 </div>
+{% endblock %}
 <div>
     {% block content %}{% endblock %}
 </div>

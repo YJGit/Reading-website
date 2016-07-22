@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <style>
+        form{
+            width: 300px;
+            padding: 20px;
+            border: 6px solid palevioletred;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        h2{
+            text-align: center;
+        }
+        input{
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+            height: 30px;
+            border: 1px solid palevioletred;
+        }
+        input[type="submit"]{
+            border: none;
+            background-color: rgba(219, 112, 147, 0.5);
+        }
+        input[type="submit"]:hover{
+            background-color: rgba(219, 112, 147, 1);
+        }
+    </style>
+</head>
+<body>
+    <form id="login_form" method="post" action="/login/">
+        {% csrf_token %}
+        <h2>登录悦读网</h2>
+        <label for="username">用户名</label>
+        <input type="text" name="username" value=""/>
+        <label for="password">密码</label>
+        <input type="password" name="password" value=""/>
+        <input type="submit" name="submit" value="登录"/>
+    </form>
+</body>
+</html>

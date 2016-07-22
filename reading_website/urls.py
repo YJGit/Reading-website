@@ -23,5 +23,8 @@ urlpatterns = [
     url(r'^(?P<book_id>\d+)/$', 'books.views.detail', name='detail'),
     url(r'^register/$', 'books.views.register', name='register'),
     url(r'^register/success/$', 'books.views.register_success', name='register_success'),
+    url(r'^login/$', 'books.views.user_login', name='user_login'),
+    url(r'^logout/$', 'books.views.user_logout', name='user_logout'),
+    url(r'^account/$', 'books.views.set_account', name='set_account'),
     url(r'^(?P<laber_title>.*)/$', 'books.views.laber_detail', name='laber'),
 ]
