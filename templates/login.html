@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="{% static "css/login.css" %}" />
+</head>
+<body>
+    <p class="warning">{{ error_message }}</p>
+    <p class=""warning">{{ disabled_message }}</p>
+    <form id="login_form" method="post" action="/login/">
+        {% csrf_token %}
+        <h2>登录悦读网</h2>
+        <label for="username">用户名</label>
+        <input type="text" name="username" value=""/>
+        <label for="password">密码</label>
+        <input type="password" name="password" value=""/>
+        <input type="submit" name="submit" value="登录"/>
+    </form>
+</body>
+</html>

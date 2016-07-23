@@ -1,188 +1,13 @@
 <!doctype html>
+{% block staticfiles %}{% load staticfiles %}{% endblock %}
 <html lang="en">
 <head>
-    <style type="text/css">
-    .index{
-        width: 100%;
-        height: 24px;
-        background-color: #545652;
-        margin-top: -8px;
-        margin-left: -7px;
-        margin-right: -3px;
-        min-width: 950px;
-    }
-    .wrap{
-        width: 100%;
-        height: 135px;
-        min-width: 950px;
-        margin-left: -7px;
-        margin-right: -3px;
-        background-color: #e9e9e0;
-    }
-    .wrap_up{
-        background-color: #e9e9e2;
-        width: 100%;
-        height: 80px;
-    }
-    .wrap_down{
-        background-color: #e9e9e2;
-        width: 100%;
-        height: 50px;
-        border:1px solid #FFF;
-        border-top-style:groove;
-        border-bottom-style: hidden;
-        border-left-style: hidden;
-        border-right-style: hidden;
-        margin-top: 5px;
-    }
-    .login_register{
-        line-height: 20px;
-    }
-    .login{
-        float:right;
-        padding: 0 12px;
-    }
-    #specialword{
-        font-size: 42px;
-        line-height: 0;
-        font-family:Arial,Helvetica,sans-serif;
-        color:brown;
-        float:right;
-        margin-right: 10%;
-    }
-    .register{
-        float:right;
-        padding: 0 12px;
-    }
-    .items{
-        line-height: 20px;
-    }
-    .douban{
-        float:left;
-        padding: 0 12px;
-    }
-    .reader{
-        float:left;
-        padding: 0 12px;
-    }
-    a:link{
-        color: #d5d5d5;
-        text-decoration: none;
-    }
-    a:visited{
-        color: #d5d5d5;
-        text-decoration: none;
-    }
-    a:hover{
-        color: floralwhite;
-        text-decoration: none;
-    }
-    a:active{
-        color: #d5d5d5;
-        text-decoration: none;
-    }
-    .logo{
-        height: 100%;
-        width: 30%;
-        float:left;
-    }
-    .search{
-        height: 100%;
-        width: 70%;
-        float:left;
-    }
-    .inp{
-        height: 100%;
-        width: 80%;
-        float:left;
-    }
-    .inp-btn{
-        height: 100%;
-        width: 20%;
-        float:left;
-    }
-    .inp input {
-        height: 30px;
-        width:100%;
-        margin-top: 4%;
-    }
-    .inp-btn input {
-        background-color: aqua;
-        border: none;
-        width: 50px;
-        height: 36px;
-        margin-top: 15.5%;
-        margin-left: 4px;
-        font-size: 13px;
-        color: burlywood;
-    }
-    fieldset{
-        border: none;
-        height: 80%;
-        width: 97%;
-    }
-
-    #choose_item{
-        height: 100%;
-        width: 100%;
-    }
-
-    #cla{
-        float:left;
-        height: 100%;
-        width: 10%;
-        list-style: none;
-        margin-left: 15%;
-    }
-    #classify:visited,
-    #classify:hover,
-    #classify:active,
-    #classify:link{
-        color: #614e3c;
-        float:left;
-        height: 100%;
-        width: 100%;
-        list-style: none;
-    }
-
-    #rem{
-        float:left;
-        height: 100%;
-        width: 10%;
-        list-style: none;
-    }
-    #remark:visited,
-    #remark:hover,
-    #remark:active,
-    #remark:link{
-        color: #614e3c;
-        float:left;
-        height: 100%;
-        width: 100%;
-        list-style: none;
-    }
-
-    #res{
-        float:left;
-        height: 100%;
-        width: 10%;
-        list-style: none;
-    }
-    #resource:visited,
-    #resource:hover,
-    #resource:active,
-    #resource:link{
-        color: #614e3c;
-        float:left;
-        height: 100%;
-        width: 100%;
-        list-style: none;
-    }
-
-    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/base.css" %}" />
+    {% block css_link %}
+    {% endblock %}
 </head>
 <body>
 <div class = "index">
@@ -190,11 +15,19 @@
         <div><a href="https://www.baidu.com/" class="douban">悦读</a></div>
         <div><a href="https://www.baidu.com/" class="reader">读书</a></div>
     </div>
-    <div class = "login_register">
-        <div><a href="https://www.baidu.com/" class="login">登录</a></div>
-        <div><a href="https://www.baidu.com/" class="register">注册</a></div>
+    {% if user.is_authenticated %}
+    <div class = "logout_account">
+        <div><a href="/logout/" class="logout">退出登录</a></div>
+        <div><a href="/account/{{ user.username }}" class="account">{{ user.username }}的账户设置</a></div>
     </div>
+    {% else %}
+    <div class = "login_register">
+        <div><a href="/login/" class="login">登录</a></div>
+        <div><a href="/register/" class="register">注册</a></div>
+    </div>
+    {% endif %}
 </div>
+{% block search %}
 <div class = "wrap">
     <div class = "wrap_up">
         <div class = "logo">
@@ -220,6 +53,7 @@
         </ul>
     </div>    
 </div>
+{% endblock %}
 <div>
     {% block content %}{% endblock %}
 </div>
