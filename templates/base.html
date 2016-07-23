@@ -20,6 +20,10 @@
         <div><a href="/logout/" class="logout">退出登录</a></div>
         <div><a href="/account/{{ user.username }}" class="account">{{ user.username }}的账户设置</a></div>
     </div>
+    {% block user_img_block %}
+    {% load user_img %}
+    {% get_user_img user %}
+    {% endblock %}
     {% else %}
     <div class = "login_register">
         <div><a href="/login/" class="login">登录</a></div>

@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
 # Create your views here.
+
 def home(request):
     book_list = []
     for id in range(1, 11):
