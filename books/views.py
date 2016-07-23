@@ -74,9 +74,9 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect('/')
             else:
-                context_dict['disabled_message'] = "Your account is disabled."
+                context_dict['disabled_message'] = "此账户已经失活"
         else:
-            context_dict['error_message'] = "Invalid login details supplied."
+            context_dict['error_message'] = "用户名和密码错误"
     return render(request, 'login.html', context_dict)
 
 @login_required
