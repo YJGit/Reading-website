@@ -4,7 +4,51 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>账户设置</title>
+        <style>
+        form{
+            width: 300px;
+            padding: 20px;
+            border: 6px solid palevioletred;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        h2{
+            text-align: center;
+        }
+        input{
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+            height: 30px;
+            border: 1px solid palevioletred;
+        }
+        input[type="file"]{
+            border: none
+        }
+        input[type="submit"]{
+            border: none;
+            background-color: rgba(219, 112, 147, 0.5);
+        }
+        input[type="submit"]:hover{
+            background-color: rgba(219, 112, 147, 1);
+        }
+    </style>
 </head>
 <body>
-
+    <form id="user_form" method="post" action="/account/{{ user.username }}/" enctype="multipart/form-data">
+         {% csrf_token %}
+         <h2>账户设置</h2>
+         <label for="new_username">修改用户名</label>
+         <input type="text" name="new_username" value=""/>
+         <label for="new_password">修改密码</label>
+         <input type="text" name="new_password" value=""/>
+         <label for="new_email">修改电子邮箱</label>
+         <input type="text" name="new_email" value=""/>
+         <label for="new_picture">重置头像</label>
+         <input type="file" name="new_picture">
+         <!-- Provide a button to click to submit the form. -->
+         <input type="submit" name="submit" value="修改账户" />
+     </form>
 </body>

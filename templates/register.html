@@ -33,11 +33,14 @@
         input[type="submit"]:hover{
             background-color: rgba(219, 112, 147, 1);
         }
+        body > ul{
+            color: red;
+        }
     </style>
 </head>
 <body>
-     {{ user_form.errors }}
-     {{ profile_form.errors }}
+     {{ user_form_errors }}
+     {{ profile_form_errors }}
      <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
          {% csrf_token %}
          <h2>欢迎注册悦读网</h2>

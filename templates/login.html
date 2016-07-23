@@ -30,9 +30,14 @@
         input[type="submit"]:hover{
             background-color: rgba(219, 112, 147, 1);
         }
+        .warning{
+            color: red;
+        }
     </style>
 </head>
 <body>
+    <p class="warning">{{ error_message }}</p>
+    <p class=""warning">{{ disabled_message }}</p>
     <form id="login_form" method="post" action="/login/">
         {% csrf_token %}
         <h2>登录悦读网</h2>

@@ -193,7 +193,7 @@
     {% if user.is_authenticated %}
     <div class = "logout_account">
         <div><a href="/logout/" class="logout">退出登录</a></div>
-        <div><a href="/account/" class="account">{{ user.username }}的账户设置</a></div>
+        <div><a href="/account/{{ user.username }}" class="account">{{ user.username }}的账户设置</a></div>
     </div>
     {% else %}
     <div class = "login_register">

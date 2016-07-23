@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from books.models import book, laber
+from books.models import book, laber, UserProfile
+from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
@@ -35,6 +36,7 @@ def laber_detail(request, laber_title):
     return render(request, 'laber_detail.html')
 
 def register(request):
+    context_dict = {}
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
@@ -49,18 +51,20 @@ def register(request):
             profile.save()
             return HttpResponseRedirect('/register/success/')
         else:
-            print(user_form.errors, profile_form.errors)
+            context_dict['user_form_errors'] = user_form.errors
+            context_dict['profile_form_errors'] = profile_form.errors
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-    return render(request,
-                  'register.html',
-                  {'user_form': user_form, 'profile_form': profile_form})
+    context_dict['user_form'] = user_form
+    context_dict['profile_form'] = profile_form
+    return render(request, 'register.html', context_dict)
 
 def register_success(request):
     return render(request, 'register_success.html', {})
 
 def user_login(request):
+    context_dict = {}
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -70,12 +74,10 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect('/')
             else:
-                return HttpResponse("Your Rango account is disabled.")
+                context_dict['disabled_message'] = "Your account is disabled."
         else:
-            print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
-    else:
-        return render(request, 'login.html', {})
+            context_dict['error_message'] = "Invalid login details supplied."
+    return render(request, 'login.html', context_dict)
 
 @login_required
 def user_logout(request):
@@ -83,21 +85,28 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 @login_required
-def set_account(request):
+def set_account(request, username_slug):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        email = request.POST.get('email')
-        #picture =
-        user = authenticate(username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect('/')
-            else:
-                return HttpResponse("Your Rango account is disabled.")
-        else:
-            print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+        old_user = User.objects.get(username=username_slug)
+        old_user_profile = UserProfile.objects.get(user=old_user)
+        new_username = request.POST.get('new_username')
+        if new_username:
+            old_user.username = new_username
+        new_password = request.POST.get('new_password')
+        if new_password:
+            old_user.set_password(new_password)
+        new_email = request.POST.get('new_email')
+        if new_email:
+            old_user.email = new_email
+        old_user_profile.user = old_user
+        if 'new_picture' in request.FILES:
+            old_user_profile.picture = request.FILES['new_picture']
+        old_user.save()
+        old_user_profile.save()
+        logout(request)
+        return HttpResponseRedirect('/account/success/')
     else:
         return render(request, 'account.html', {})
+
+def set_account_success(request):
+    return render(request, 'set_account_success.html', {})

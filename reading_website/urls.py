@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^register/success/$', 'books.views.register_success', name='register_success'),
     url(r'^login/$', 'books.views.user_login', name='user_login'),
     url(r'^logout/$', 'books.views.user_logout', name='user_logout'),
-    url(r'^account/$', 'books.views.set_account', name='set_account'),
+    url(r'^account/success/$', 'books.views.set_account_success', name='set_account_success'),
+    url(r'^account/(?P<username_slug>[\w\@\.\+\-\_]+)/$', 'books.views.set_account', name='set_account'),
     url(r'^(?P<laber_title>.*)/$', 'books.views.laber_detail', name='laber'),
 ]
