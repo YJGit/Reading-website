@@ -13,9 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
-
+"""
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', 'books.views.home', name='home'),
@@ -29,3 +27,16 @@ urlpatterns = [
     url(r'^account/(?P<username_slug>[\w\@\.\+\-\_]+)/$', 'books.views.set_account', name='set_account'),
     url(r'^(?P<laber_title>.*)/$', 'books.views.laber_detail', name='laber'),
 ]
+"""
+from django.conf.urls import url, include
+from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^/', include('books.urls')),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
