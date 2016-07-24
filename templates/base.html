@@ -1,36 +1,62 @@
 <!doctype html>
-{% block staticfiles %}{% load staticfiles %}{% endblock %}
-<html lang="en">
+{% load staticfiles %}
+<html lang="zh-hans">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="悦读网，致力于为您提供高品质图书信息">
+    <meta name="author" content="杨景，于科屹，马子俊">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static "css/base.css" %}" />
-    {% block css_link %}
-    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <link ref="stylesheet" href="{% static 'css/base.css' %}"/>
+    <!-- This block is for other stylesheet -->
+    {% block css_link %}{% endblock %}
 </head>
 <body>
-<div class = "index">
-    <div class = "items">
-        <div><a href="https://www.baidu.com/" class="douban">悦读</a></div>
-        <div><a href="https://www.baidu.com/" class="reader">读书</a></div>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="http://glyphicons.com/"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;悦读网</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-item">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+      </div>
+      <div class="collapse navbar-collapse" id="nav-item">
+        <ul class="nav navbar-nav common">
+          <li><a href='/'>首页</a></li>
+          <li><a href=''>关于悦读</a></li>
+        </ul>
+        <ul class="nav navbar-nav" id="out">
+          <li><a href=''>登录</a></li>
+          <li><a href=''>注册</a></li>
+        </ul>
+      </div>
     </div>
-    {% if user.is_authenticated %}
-    <div class = "logout_account">
-        <div><a href="/logout/" class="logout">退出登录</a></div>
-        <div><a href="/account/{{ user.username }}" class="account">{{ user.username }}的账户设置</a></div>
+  </nav>
+    <div class = "index">
+        <div class = "items">
+            <div><a href="https://www.baidu.com/" class="douban">悦读</a></div>
+            <div><a href="https://www.baidu.com/" class="reader">读书</a></div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class = "logout_account">
+            <div><a href="/logout/" class="logout">退出登录</a></div>
+            <div><a href="/account/{{ user.username }}" class="account">{{ user.username }}的账户设置</a></div>
+        </div>
+        {% block user_img_block %}
+        {% load user_img %}
+        {% get_user_img user %}
+        {% endblock %}
+        {% else %}
+        <div class = "login_register">
+            <div><a href="/login/" class="login">登录</a></div>
+            <div><a href="/register/" class="register">注册</a></div>
+        </div>
+        {% endif %}
     </div>
-    {% block user_img_block %}
-    {% load user_img %}
-    {% get_user_img user %}
-    {% endblock %}
-    {% else %}
-    <div class = "login_register">
-        <div><a href="/login/" class="login">登录</a></div>
-        <div><a href="/register/" class="register">注册</a></div>
-    </div>
-    {% endif %}
-</div>
 {% block search %}
 <div class = "wrap">
     <div class = "wrap_up">
@@ -61,6 +87,9 @@
 <div>
     {% block content %}{% endblock %}
 </div>
-
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% block js_link %}
+{% endblock %}
 </body>
 </html>

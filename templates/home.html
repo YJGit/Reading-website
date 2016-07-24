@@ -4,10 +4,10 @@
 {{title}}
 {% endblock %}
 
-{% block staticfiles %}{% load staticfiles %}{% endblock %}
+{% load staticfiles %}
 
 {% block css_link %}
-    <link rel="stylesheet" href="{% static "css/home.css" %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 
 {% block content %}
