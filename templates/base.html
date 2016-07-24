@@ -1,11 +1,63 @@
 <!doctype html>
+{% block staticfiles %}{% load staticfiles %}{% endblock %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    {% block css_link %}
+    {% endblock %}
 </head>
 <body>
+<div class = "index">
+    <div class = "items">
+        <div><a href="https://www.baidu.com/" class="douban">悦读</a></div>
+        <div><a href="https://www.baidu.com/" class="reader">读书</a></div>
+    </div>
+    {% if user.is_authenticated %}
+    <div class = "logout_account">
+        <div><a href="/logout/" class="logout">退出登录</a></div>
+        <div><a href="/account/{{ user.username }}" class="account">{{ user.username }}的账户设置</a></div>
+    </div>
+    {% block user_img_block %}
+    {% load user_img %}
+    {% get_user_img user %}
+    {% endblock %}
+    {% else %}
+    <div class = "login_register">
+        <div><a href="/login/" class="login">登录</a></div>
+        <div><a href="/register/" class="register">注册</a></div>
+    </div>
+    {% endif %}
+</div>
+{% block search %}
+<div class = "wrap">
+    <div class = "wrap_up">
+        <div class = "logo">
+            <p id = "specialword" >悦读读书</p>
+        </div>
+        <div class = "search">
+          <fieldset>
+            <div class="inp">
+              <input id="inp-query" name="search_text" size="22" maxlength="60" value="" placeholder="书名、作者、ISBN" autocomplete="off" dir="ltr">
+            </div>
+            <div class="inp-btn">
+              <input type="submit" value="搜索">
+            </div>
+            <!--<input type="hidden" name="cat" value="1001">-->
+          </fieldset>
+        </div>
+    </div>
+    <div class = "wrap_down">
+        <ul id = 'choose_item'>
+            <li id = 'cla'><a id = 'classify' href="https://www.baidu.com">分类浏览</a></li>
+            <li id = 'rem'><a id = 'remark' href="https://www.baidu.com">发表书评</a></li>
+            <li id = 'res'><a id = 'resource' href="https://www.baidu.com">本地资源</a></li>
+        </ul>
+    </div>    
+</div>
+{% endblock %}
 <div>
     {% block content %}{% endblock %}
 </div>

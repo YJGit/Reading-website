@@ -1,0 +1,13 @@
+div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+p{
+    font-size: 24px;
+}
+a{
+    color: palevioletred;
+    text-decoration: none;
+}

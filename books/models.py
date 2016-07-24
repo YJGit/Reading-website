@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 #书名 封面图 评分 作者 出版社 译者 出版年 页数 定价 装帧 ISBN 标签 简介 目录 id
@@ -21,3 +22,14 @@ class book(models.Model):
 
     def __str__(self):
         return self.title
+
+class laber(models.Model):
+    title = models.CharField(max_length = 30)
+    def __str__(self):
+        return self.title
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+    def __str__(self):
+        return self.user.username

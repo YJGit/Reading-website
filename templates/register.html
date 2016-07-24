@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="{% static "css/register.css" %}" />
+</head>
+<body>
+     {{ user_form_errors }}
+     {{ profile_form_errors }}
+     <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
+         {% csrf_token %}
+         <h2>欢迎注册悦读网</h2>
+         <label for="id_username">用户名</label>
+         {{ user_form.username }}
+         <label for="id_password">密码</label>
+         {{ user_form.password }}
+         <label for="id_email">电子邮箱</label>
+         {{ user_form.email}}
+         <label for="id_picture">头像</label>
+         {{ profile_form.picture }}
+         <!-- Provide a button to click to submit the form. -->
+         <input type="submit" name="submit" value="注册" />
+     </form>
+</body>
+</html>
