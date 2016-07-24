@@ -1,14 +1,51 @@
+@media all and (max-width: 768px){
+  .list-group-item{
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+  }
+}
+
+.laber-head{
+  margin-bottom: 20px;
+}
 .post-title{
   text-align: center;
   margin-bottom: 20px;
   border: 5px groove saddlebrown;
-  margin-left
+  padding: 10px 0px 0px;
 }
 
 .post-title a{
   display: block;
+  text-align: center;
 }
 .post-title .cover{
   height: 200px;
   width: 150px;
+}
+
+.famous-head{
+  margin-bottom: 20px;
+}
+
+#logo-slider{
+  margin-top: 40px;
+}
+@media all and (max-width: 768px){
+  #logo-slider{
+    margin-top: 0px;
+  }
+}
+
+.carousel-indicators{
+  margin-bottom: 20px;
+}
+
+.item-caption{
+  text-align: center;
+}
+
+.carousel-control.left, .carousel-control.right{
+  background-image: none;
 }
