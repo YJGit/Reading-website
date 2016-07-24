@@ -16,6 +16,9 @@ def home(request):
         book_list.append(book.objects.get(book_id = id))
     return render(request,  'home.html', {'book_list': book_list, 'title': 'book_website',})
 
+def about(request):
+    return render(request, 'about.html', {})
+
 def top25(request):
     book_list = []
     for id in range(12, 22):

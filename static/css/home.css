@@ -1,72 +1,14 @@
-.content{
-    height: 470px;
-    width: 80%;
-    margin-left: 10%;
-}
-.article{
-    height: 100%;
-    width: 60%;
-    float: left;
-}
-.aside{
-    height: 100%;
-    width: 40%;
-    float: left;
-}
-.aside .aside_wrap{
-    background-color: antiquewhite;
-    margin-left: 50px;
-}
 .post-title{
-    height: 200px;
-    width: 19%;
-    background-color: bisque;
-    float: left;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 3px;
-    margin-right: 3px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 5px groove saddlebrown;
+  margin-left
 }
-.newbook{
-    border-bottom-style: groove;
-    height: 20px;
-    padding-bottom: 3px;
+
+.post-title a{
+  display: block;
 }
-.cover{
-    height: 160px;
-    width: 100%;
-}
-.bookname{
-    height: 20px;
-    width: 100%;
-}
-.author{
-    height: 20px;
-    width: 100%;
-}
-a img{
-    height: 160px;
-    width: 100%;
-}
-.headline{
-    padding-bottom: 3px;
-    border-bottom-style: groove;
-    height: 30px;
-}
-.label{
-    height: 60px;
-    width: 100%;
-    margin-left: 10px;
-}
-.alabel{
-    height: 25px;
-    width: 18%;
-    margin: 1px 2px 1px 4px;
-    float: left;
-}
-.alabel a{
-    color:brown;
-}
-.book_title{
-    color: #000;
+.post-title .cover{
+  height: 200px;
+  width: 150px;
 }
