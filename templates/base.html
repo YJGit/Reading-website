@@ -9,7 +9,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
     <!-- This block is for other stylesheet -->
     {% block css_link %}{% endblock %}
 </head>
@@ -57,10 +57,18 @@
           <p><span class="glyphicon glyphicon-search icon" aria-hidden="true"></span>&nbsp;总有一本好书可引你共鸣</p>
         </div>
         <div class="input-group">
+          <!--
           <input type="text" class="form-control" placeholder="输入作者，ISBN码，有意义的词汇">
-           <span class="input-group-btn">
+          <span class="input-group-btn">
             <button class="btn btn-default" type="button">Go!</button>
           </span>
+          -->
+          <form action="/book/search/" method="get">
+            <input type="text" class="form-control" name = "q" placeholder="输入作者，ISBN码，有意义的词汇">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+          </form>
         </div>
       </div>
     </div>

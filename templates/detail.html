@@ -7,7 +7,7 @@
 {% block staticfiles %}{% load staticfiles %}{% endblock %}
 
 {% block css_link %}
-    <link rel="stylesheet" href="{% static "css/detail.css" %}" />
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
 {% endblock %}
 
 {% block content %}
@@ -98,7 +98,7 @@
                     </span>
                 </div>
                 <div class = "share">
-                    <div class="sharelabel"><a href = "https://www.baidu.com">写笔记</a></div>
+                    <div class="sharelabel"><a href = "{% url 'note_book' note_book_title=book_detail.title %}">写笔记</a></div>
                     <div class="sharelabel"><a href = "https://www.baidu.com">写书评</a></div>
                     <div class="sharelabel"><a href = "https://www.baidu.com">分享到</a></div>
                 </div>
