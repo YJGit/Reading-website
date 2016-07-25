@@ -1,88 +1,121 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{title}}
+悦读网
 {% endblock %}
 
-{% block staticfiles %}{% load staticfiles %}{% endblock %}
+{% load staticfiles %}
 
 {% block css_link %}
-    <link rel="stylesheet" href="{% static "css/home.css" %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css"/>
 {% endblock %}
 
 {% block content %}
+<div class='container content'>
+  <div class='laber row'>
+    <h3 class="laber-head">热门标签</h3>
+    <div class="carousel slide col-xs-12 col-sm-4 col-sm-push-8" id="logo-slider" data-ride="carousel">
+      <ol class="carousel-indicators" style="background-color: orange">
+        <li data-target="#logo-slider" data-slide-to="0" class="active"></li>
+        <li data-target="#logo-slider" data-slide-to="1"></li>
+        <li data-target="#logo-slider" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="{% static 'images/book-logo-001.jpg' %}" class="img-responsive center-block"/>
+          <p class="item-caption">让书籍为你插上翅膀</p>
+        </div>
+        <div class="item">
+          <img src="{% static 'images/book-logo-002.jpg' %}" class="img-responsive center-block"/>
+          <p class="item-caption">让书籍晴朗你的时光</p>
+        </div>
+        <div class="item">
+          <img src="{% static 'images/book-logo-003.jpg' %}" class="img-responsive center-block"/>
+          <p class="item-caption">让书籍芬芳你的岁月</p>
+        </div>
+      </div>
+      <a class="left carousel-control" data-slide="prev" href="#logo-slider">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" data-slide="next" href="#logo-slider">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+    <div class='literary col-xs-3 col-sm-2 col-sm-pull-4'>
+       <div class="panel panel-danger">
+          <div class="panel-heading">文学</div>
+          <ul class="list-group">
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='小说' %}">小说</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='随笔' %}">随笔</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='日本文学' %}">日本文学</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='散文' %}">散文</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='童话' %}">童话</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='诗歌' %}">诗歌</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='名著' %}">名著</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='港台' %}">港台</a></li>
+          </ul>
+      </div>
+    </div>
+    <div class='popular col-xs-3 col-sm-2 col-sm-pull-4'>
+      <div class="panel panel-primary">
+        <div class="panel-heading">流行</div>
+        <ul class="list-group">
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='漫画' %}">漫画</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='绘本' %}">绘本</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='推理' %}">推理</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='青春' %}">青春</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='言情' %}">言情</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='科幻' %}">科幻</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='武侠' %}">武侠</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='奇幻' %}">奇幻</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class='culture col-xs-3 col-sm-2 col-sm-pull-4'>
+      <div class="panel panel-info">
+        <div class="panel-heading">文化</div>
+        <ul class="list-group">
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='历史' %}">历史</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='哲学' %}">哲学</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='传记' %}">传记</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='设计' %}">设计</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='建筑' %}">建筑</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='电影' %}">电影</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='回忆录' %}">回忆录</a></li>
+          <li class="list-group-item"><a href = "{% url 'laber' laber_title='音乐' %}">音乐</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class='technology col-xs-3 col-sm-2 col-sm-pull-4'>
+       <div class="panel panel-success">
+          <div class="panel-heading">科技</div>
+          <ul class="list-group">
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='科普' %}">科普</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='互联网' %}">互联网</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='编程' %}">编程</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='交互设计' %}">交互设计</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='算法' %}">算法</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='通信' %}">通信</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='神经网络' %}">神经网络</a></li>
+            <li class="list-group-item"><a href = "{% url 'laber' laber_title='机器学习' %}">机器学习</a></li>
+          </ul>
+       </div>
+    </div>
 
-<div class = 'content'>
-    <div class = 'article'>
-        <div class='newbook'>
-            <h3>新书速递</h3>
-        </div>
-        {% for book in book_list %}
-            <div class="post-title">
-                <div class = 'cover'>
-                    <a href="{% url 'detail' book_id=book.book_id %}">
-                        <img src={{book.cover_url}}>
-                    </a>
-                </div>
-                <div class = 'bookname'>
-                    <a href="{% url 'detail' book_id=book.book_id %}">
-                        <span class="book_title">{{book.title}}</span>
-                    </a>
-                </div>
-                <div class = 'author'>{{book.author}}</div>
-            </div>
-        {% endfor %}
-    </div>
-    <div class = 'aside'>
-        <div class = "aside_wrap">
-            <div class='headline'>
-                <h2>热门标签</h2>
-            </div>
-            <p>文学</p>
-            <div class = 'label'>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='小说' %}">小说</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='随笔' %}">随笔</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='日本文学' %}">日本文学</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='散文' %}">散文</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='童话' %}">童话</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='诗歌' %}">诗歌</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='名著' %}">名著</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='港台' %}">港台</a></div>
-            </div>
-            <p>流行</p>
-            <div class = 'label'>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='漫画' %}">漫画</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='绘本' %}">绘本</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='推理' %}">推理</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='青春' %}">青春</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='言情' %}">言情</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='科幻' %}">科幻</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='武侠' %}">武侠</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='奇幻' %}">奇幻</a></div>
-            </div>
-            <p>文化</p>
-            <div class = 'label'>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='历史' %}">历史</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='哲学' %}">哲学</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='传记' %}">传记</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='设计' %}">设计</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='建筑' %}">建筑</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='电影' %}">电影</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='回忆录' %}">回忆录</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='音乐' %}">音乐</a></div>
-            </div>
-            <p>科技</p>
-            <div class = 'label'>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='科普' %}">科普</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='互联网' %}">互联网</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='编程' %}">编程</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='交互设计' %}">交互设计</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='算法' %}">算法</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='通信' %}">通信</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='神经网络' %}">神经网络</a></div>
-                <div class = 'alabel'><a href = "{% url 'laber' laber_title='机器学习' %}">机器学习</a></div>
-            </div>
-        </div>
-    </div>
+  </div>
+  <div class='row famous-book-section'>
+    <h3 class="famous-head">最受欢迎图书榜</h3>
+      {% for book in book_list %}
+      <div class="post-title col-xs-4 col-sm-3 col-lg-2 col-xs-offset-1">
+        <a href="{% url 'detail' book_id=book.book_id %}">
+          <img class="cover img-responsive center-block" src={{book.cover_url}}>
+        </a>
+        <a href="{% url 'detail' book_id=book.book_id %}">
+          {{book.title}}
+        </a>
+        <p class='author'>{{book.author}}</p>
+      </div>
+      {% endfor %}
+  </div>
 </div>
 {% endblock %}

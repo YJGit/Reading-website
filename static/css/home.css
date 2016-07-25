@@ -1,72 +1,51 @@
-.content{
-    height: 470px;
-    width: 80%;
-    margin-left: 10%;
+@media all and (max-width: 768px){
+  .list-group-item{
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+  }
 }
-.article{
-    height: 100%;
-    width: 60%;
-    float: left;
-}
-.aside{
-    height: 100%;
-    width: 40%;
-    float: left;
-}
-.aside .aside_wrap{
-    background-color: antiquewhite;
-    margin-left: 50px;
+
+.laber-head{
+  margin-bottom: 20px;
 }
 .post-title{
-    height: 200px;
-    width: 19%;
-    background-color: bisque;
-    float: left;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 3px;
-    margin-right: 3px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 5px groove saddlebrown;
+  padding: 10px 0px 0px;
 }
-.newbook{
-    border-bottom-style: groove;
-    height: 20px;
-    padding-bottom: 3px;
+
+.post-title a{
+  display: block;
+  text-align: center;
 }
-.cover{
-    height: 160px;
-    width: 100%;
+.post-title .cover{
+  height: 200px;
+  width: 150px;
 }
-.bookname{
-    height: 20px;
-    width: 100%;
+
+.famous-head{
+  margin-bottom: 20px;
 }
-.author{
-    height: 20px;
-    width: 100%;
+
+#logo-slider{
+  margin-top: 40px;
 }
-a img{
-    height: 160px;
-    width: 100%;
+@media all and (max-width: 768px){
+  #logo-slider{
+    margin-top: 0px;
+  }
 }
-.headline{
-    padding-bottom: 3px;
-    border-bottom-style: groove;
-    height: 30px;
+
+.carousel-indicators{
+  margin-bottom: 20px;
 }
-.label{
-    height: 60px;
-    width: 100%;
-    margin-left: 10px;
+
+.item-caption{
+  text-align: center;
 }
-.alabel{
-    height: 25px;
-    width: 18%;
-    margin: 1px 2px 1px 4px;
-    float: left;
-}
-.alabel a{
-    color:brown;
-}
-.book_title{
-    color: #000;
+
+.carousel-control.left, .carousel-control.right{
+  background-image: none;
 }

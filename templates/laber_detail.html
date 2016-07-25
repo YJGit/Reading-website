@@ -6,5 +6,8 @@
 </head>
 <body>
     <div>here is laber detail</div>
+    {% for book in book_list %}
+        <div>{{book.label}}</div>
+    {% endfor %}
 </body>
 </html>

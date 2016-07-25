@@ -9,11 +9,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
 # Create your views here.
+
 def home(request):
     book_list = []
     for id in range(1, 11):
         book_list.append(book.objects.get(book_id = id))
     return render(request,  'home.html', {'book_list': book_list, 'title': 'book_website',})
+
+def about(request):
+    return render(request, 'about.html', {})
 
 def top25(request):
     book_list = []
@@ -30,10 +34,11 @@ def detail(request, book_id):
 
 def laber_detail(request, laber_title):
     try:
+        book_list = book.objects.filter(label__contains = laber_title)
         laber_de = laber.objects.get(title = laber_title)
     except laber.DoesNotExist:
         raise Http404
-    return render(request, 'laber_detail.html')
+    return render(request, 'laber_detail.html', {'book_list': book_list,})
 
 def register(request):
     context_dict = {}

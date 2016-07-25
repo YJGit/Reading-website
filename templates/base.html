@@ -1,62 +1,76 @@
 <!doctype html>
-{% block staticfiles %}{% load staticfiles %}{% endblock %}
-<html lang="en">
+{% load staticfiles %}
+<html lang="zh-hans">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="悦读网，致力于为您提供高品质图书信息">
+    <meta name="author" content="杨景，于科屹，马子俊">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static "css/base.css" %}" />
-    {% block css_link %}
-    {% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css"/>
+    <!-- This block is for other stylesheet -->
+    {% block css_link %}{% endblock %}
 </head>
 <body>
-<div class = "index">
-    <div class = "items">
-        <div><a href="https://www.baidu.com/" class="douban">悦读</a></div>
-        <div><a href="https://www.baidu.com/" class="reader">读书</a></div>
-    </div>
-    {% if user.is_authenticated %}
-    <div class = "logout_account">
-        <div><a href="/logout/" class="logout">退出登录</a></div>
-        <div><a href="/account/{{ user.username }}" class="account">{{ user.username }}的账户设置</a></div>
-    </div>
-    {% else %}
-    <div class = "login_register">
-        <div><a href="/login/" class="login">登录</a></div>
-        <div><a href="/register/" class="register">注册</a></div>
-    </div>
-    {% endif %}
-</div>
-{% block search %}
-<div class = "wrap">
-    <div class = "wrap_up">
-        <div class = "logo">
-            <p id = "specialword" >悦读读书</p>
-        </div>
-        <div class = "search">
-          <fieldset>
-            <div class="inp">
-              <input id="inp-query" name="search_text" size="22" maxlength="60" value="" placeholder="书名、作者、ISBN" autocomplete="off" dir="ltr">
-            </div>
-            <div class="inp-btn">
-              <input type="submit" value="搜索">
-            </div>
-            <!--<input type="hidden" name="cat" value="1001">-->
-          </fieldset>
-        </div>
-    </div>
-    <div class = "wrap_down">
-        <ul id = 'choose_item'>
-            <li id = 'cla'><a id = 'classify' href="https://www.baidu.com">分类浏览</a></li>
-            <li id = 'rem'><a id = 'remark' href="https://www.baidu.com">发表书评</a></li>
-            <li id = 'res'><a id = 'resource' href="https://www.baidu.com">本地资源</a></li>
+  <!-- This is the navigation bar fixed at the top -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;悦读网</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-item">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+      </div>
+      <div class="collapse navbar-collapse" id="nav-item">
+        <ul class="nav navbar-nav common">
+          <li><a href="/">首页</a></li>
+          <li><a href='/about/'>关于悦读</a></li>
         </ul>
-    </div>    
-</div>
+        {% if user.is_authenticated %}
+        <ul class="nav navbar-nav in">
+          <li><a href="/account/{{ user.username }}">我的悦读</a></li>
+          <li><a href="/logout/">退出登录</a></li>
+        </ul>
+        {% block user_img_block %}
+        {% load user_img %}
+        {% get_user_img user %}
+        {% endblock %}
+        {% else %}
+        <ul class="nav navbar-nav out">
+          <li><a href="/login/">登录</a></li>
+          <li><a href="/register/">注册</a></li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+<!-- This is the search bar -->
+{% block search %}
+  <div class="container search-bar">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+        <div class="search-intro">
+          <p><span class="glyphicon glyphicon-search icon" aria-hidden="true"></span>&nbsp;总有一本好书可引你共鸣</p>
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="输入作者，ISBN码，有意义的词汇">
+           <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
-<div>
-    {% block content %}{% endblock %}
-</div>
-
+{% block content %}
+{% endblock %}
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% block js_link %}
+{% endblock %}
 </body>
 </html>

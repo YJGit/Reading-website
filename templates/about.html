@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}关于悦读{% endblock %}
+
+{% block css_link %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}"/>
+{% endblock %}
+
+{% block search %}{% endblock %}
+
+{% block content %}
+<div class="container about">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h2>关于悦读</h2>
+      <p>悦读网是一个以豆瓣读书为直接模仿对象的图书信息交流平台，由软件学院大二年级本科生—杨景，于科屹，
+      马子俊设计并搭建，旨在吸引读书爱好者聚于此地，相互砥砺，为更多爱好读书的人提供丰富的图书参考信息。</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
