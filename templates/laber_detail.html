@@ -5,6 +5,9 @@
     <title>Laber_detail</title>
 </head>
 <body>
-    <div>here is laber detail</div>
+    <div>共搜集到: {{size}}</div>
+    {% for book in book_list %}
+        <div>{{book.label}}, 评分{{book.score}}</div>
+    {% endfor %}
 </body>
 </html>

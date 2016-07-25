@@ -34,10 +34,57 @@ def detail(request, book_id):
 
 def laber_detail(request, laber_title):
     try:
+        book_list = book.objects.order_by("-score").filter(label__contains = laber_title)
         laber_de = laber.objects.get(title = laber_title)
+        size = len(book_list)
     except laber.DoesNotExist:
         raise Http404
-    return render(request, 'laber_detail.html')
+    return render(request, 'laber_detail.html', {'book_list': book_list, 'size':size})
+
+def search_book(request):
+    if 'q' in request.GET and request.GET['q']:
+        q = request.GET['q']
+        book_list = []
+        books = book.objects.all()
+        for bk in books:
+            if q in bk.author:
+                book_list.append(bk)
+            elif q in bk.title:
+                book_list.append(bk)
+            elif q in bk.Isbn:
+                book_list.append(bk)
+            elif q in bk.content_intro:
+                book_list.append(bk)
+            elif q in bk.directory:
+                book_list.append(bk)
+            elif q in bk.label:
+                book_list.append(bk)
+            elif q in bk.publisher:
+                book_list.append(bk)
+            elif q in bk.translator:
+                book_list.append(bk)
+        return render(request, 'search.html', {'book_list': book_list, 'query': q},)
+    else:
+        return render(request, 'search.html', {'error': True},)
+
+def notes(request, note_book_title):
+    return render(request, 'note.html', {'note_book_title':note_book_title},)
+
+def contact(request):
+    errors = []
+    if request.method == 'POST':
+        if not request.POST.get('book_page', ''):
+            errors.append('Enter a book_page.')
+        if request.POST.get('book_page') and type(eval(request.POST['book_page'].trim())) != int:
+            errors.append('Enter a int number.')
+        if not request.POST.get('book_chapter', ''):
+            errors.append('Enter a book_chapter.')
+        if request.POST.get('book_note', ''):
+            errors.append('Enter book notes.')
+        if not errors:
+            return HttpResponseRedirect('/contact/thanks/')
+    return render_to_response('note.html',
+        {'errors': errors})
 
 def register(request):
     context_dict = {}
@@ -114,3 +161,10 @@ def set_account(request, username_slug):
 
 def set_account_success(request):
     return render(request, 'set_account_success.html', {})
+
+def comment(request, book_id):
+    try:
+        comment_detail = book.objects.get(book_id = book_id)
+    except book.DoesNotExist:
+        raise Http404
+    return render(request, 'comment.html', {'comment_detail': comment_detail})    

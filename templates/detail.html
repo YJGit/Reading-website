@@ -72,7 +72,7 @@
       </div>
     </div>
   </div>
-  <h3>标签</h3>
+  <h3 class="row">书籍标签</h3>
   <div class="label-set row">
     {% for label in book_labels %}
     <div class="book-label col-xs-3 col-md-2">
@@ -90,8 +90,8 @@
       <span class="glyphicon glyphicon-star-empty star" aria-hidden="true"></span>
     </div>
     <div class = "share col-xs-4">
-      <a href = "https://www.baidu.com">写笔记</a>
-      <a href = "https://www.baidu.com">写书评</a>
+      <a href = "{% url 'note_book' note_book_title=book_detail.title %}">写笔记</a>
+      <a href = "{% url 'comment' book_id=book_detail.book_id %}">写书评</a>
       <a href = "https://www.baidu.com">分享到</a>
     </div>
   </div>
