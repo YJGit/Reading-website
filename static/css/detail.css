@@ -1,8 +1,71 @@
-#wrapper{
-    width:950px;
-    margin:0 auto;
+.content{
+  margin-top：20px;
 }
-.detail_title {
+
+.book-picture{
+  text-align: center;
+
+}
+
+.book-picture img{
+  width: 180px;
+  height: 250px;
+}
+
+.book-info h3{
+  font-size: 18px;
+  text-align: center;
+}
+.book-info > div{
+  margin: 10px;
+  text-align: center;
+}
+
+.book-info > div span{
+  color: orangered;
+}
+
+.book-score{
+  margin-top: 20px;
+}
+
+.book-score .rate_logo{
+  text-align: center;
+  font-size: 18px;
+}
+
+.book-score .score_to_show{
+  text-align: center;
+  font-size: 18px;
+  color: orangered;
+}
+
+.book-score .star{
+  float: left;
+}
+
+.book-score .perc{
+  float: right;
+}
+
+.book-score .progress{
+  clear: both;
+}
+
+.label-set h3{
+  margin: 0px;
+}
+
+.rating .rate{
+  font-size: 18px;
+}
+.rating .star{
+  font-size: 18px;
+  color: orangered;
+}
+
+/*
+book_title{
     word-wrap: break-word;
     font-size: 25px;
     font-weight: bold;
@@ -189,3 +252,4 @@
     font-family: cursive;
     font-size: 13px;
 }
+*/

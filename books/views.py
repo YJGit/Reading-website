@@ -30,7 +30,7 @@ def detail(request, book_id):
         book_detail = book.objects.get(book_id = book_id)
     except book.DoesNotExist:
         raise Http404
-    return render(request, 'detail.html', {'title': book_detail.title, 'book_detail': book_detail},)
+    return render(request, 'detail.html', {'title': book_detail.title, 'book_detail': book_detail, 'book_labels': book_detail.label.split()},)
 
 def laber_detail(request, laber_title):
     try:
