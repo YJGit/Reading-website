@@ -15,7 +15,7 @@
   <h3 class="result-intro">为您找寻到<span class="result-num">{{size}}</span>本图书</h3>
   <ul class="result-details row">
   {% for book in book_list %}
-    <li class="result-detail col-xs-12">
+    <li class="result-detail col-xs-12 hidden">
       <div class="detail-pic col-xs-4">
         <a href="{% url 'detail' book_id=book.book_id %}">
           <img src={{book.cover_url}} alt={{book.title}}/>
@@ -32,5 +32,44 @@
     </li>
   {% endfor %}
   </ul>
+  <nav>
+    <ul class="pagination">
+    </ul>
+  </nav>
 </div>
+{% endblock %}
+
+{% block js_link %}
+<script>
+  $(function () {
+    // prepare the pagination button
+    var bookNum = {{ size_js|safe }};
+    var numPerPage = 20;
+    var pageNum = Math.ceil(bookNum / numPerPage);
+    var textHtml = '';
+    for (var i = 1; i <= pageNum; i++){
+      textHtml += "<li><a href='javascript:;'>" + i + "</a></li>";
+    }
+    var $pagination = $(".pagination");
+    $pagination.html(textHtml).children("li").eq(0).addClass("active");
+
+    // prepare the books that first shows
+    var $paginationItem = $pagination.children("li");
+    var $bookItem = $('.result-details').children('li');
+    for (var j = 0; j < numPerPage; j++){
+      $bookItem.eq(j).removeClass("hidden");
+      console.log(j);
+    }
+
+    $paginationItem.click(function(){
+      var order = $paginationItem.index($(this));
+      $paginationItem.removeClass("active");
+      $(this).addClass("active");
+      $bookItem.addClass("hidden");
+      for (j = order * numPerPage; j < (order + 1) * numPerPage; j++){
+        $bookItem.eq(j).removeClass("hidden");
+      }
+    });
+  })
+</script>
 {% endblock %}

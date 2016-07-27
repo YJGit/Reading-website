@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 import datetime
+import json
 
 # Create your views here.
 
@@ -80,7 +81,7 @@ def laber_detail(request, laber_title):
         size = len(book_list)
     except laber.DoesNotExist:
         raise Http404
-    return render(request, 'laber_detail.html', {'book_list': book_list, 'size':size})
+    return render(request, 'laber_detail.html', {'book_list': book_list, 'size': size, 'size_js': json.dumps(size)})
 
 def search_book(request):
     if 'q' in request.GET and request.GET['q']:
