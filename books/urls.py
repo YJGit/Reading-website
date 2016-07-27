@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^account/(?P<username_slug>[\w\@\.\+\-\_]+)/$', views.set_account, name='set_account'),
     url(r'^book/search/$', views.search_book),
     url(r'^laber_detail/(?P<laber_title>.*)/$', views.laber_detail, name='laber'),
-    url(r'^book/note/(?P<note_book_id>.*)/$', views.notes, name='note_book'),
+    url(r'^book/note/(?P<note_book_id>\d+)/$', views.notes, name='note_book'),
+    url(r'^book/note_detail/(?P<note_book_id>\d+)/$', views.note_detail, name='note_detail'),
 ]

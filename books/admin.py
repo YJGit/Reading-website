@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import book, laber, note ,UserProfile
+from .models import book, laber, UserProfile, note
 
 # Register your models here.
 admin.site.register(book)

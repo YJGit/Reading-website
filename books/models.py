@@ -29,6 +29,7 @@ class laber(models.Model):
         return self.title
 
 class note(models.Model):
+    time = models.CharField(max_length = 50, default="")
     author = models.CharField(max_length = 30)
     book_title = models.CharField(max_length = 100)
     content = models.CharField(max_length = 150)
@@ -37,7 +38,6 @@ class note(models.Model):
 
     def __str__(self):
         return self.author
-
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)

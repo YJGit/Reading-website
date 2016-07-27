@@ -7,12 +7,13 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+import datetime
 
 # Create your views here.
 
 def home(request):
     book_list = []
-    for id in range(1, 11):
+    for id in range(1, 13):
         book_list.append(book.objects.get(book_id = id))
     return render(request,  'home.html', {'book_list': book_list, 'title': 'book_website',})
 
@@ -28,11 +29,15 @@ def top25(request):
 def detail(request, book_id):
     try:
         book_detail = book.objects.get(book_id = book_id)
+        nt = note.objects.filter(book_title=book_detail.title)
     except book.DoesNotExist:
         raise Http404
-    notes = note.objects.filter(book_title=book_detail.title)
+    length = len(nt)
+    if length > 3:
+        nt = nt[length - 3: ]
     return render(request, 'detail.html', {'title': book_detail.title, 'book_detail': book_detail,
-                                           'book_labels': book_detail.label.split(), 'notes':notes,})
+                                           'book_labels': book_detail.label.split(), 'notes': nt,
+                                           'length':length, 'book_id': book_id,})
 
 def laber_detail(request, laber_title):
     try:
@@ -47,7 +52,7 @@ def search_book(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
         book_list = []
-        books = book.objects.order_by("-score").all()
+        books = book.objects.all()
         for bk in books:
             if q in bk.author:
                 book_list.append(bk)
@@ -80,16 +85,41 @@ def notes(request, note_book_id):
         nt.page = form.cleaned_data['page']
         nt.chapter = form.cleaned_data['chapter']
         nt.content = form.cleaned_data['content']
-        #nt.time = datetime.datetime.now().strftime("%Y-%m-%d %H:%I:%S")
+        nt.time = "" + datetime.datetime.now().strftime("%Y-%m-%d %H:%I:%S")
         nt.save()
 
         my_notes = note.objects.filter(book_title=bk.title)
+        length = len(my_notes)
+        if len(my_notes) > 3:
+            my_notes = my_notes[len(my_notes) - 3:]
         return render(request, 'detail.html', {'notes': my_notes, 'title': bk.title,
-                                               'book_detail': bk, 'book_labels': bk.label.split()},)
+                                               'book_detail': bk, 'book_labels': bk.label.split(),
+                      'length': length, 'book_id': bk.book_id,})
     else:
         form = noteForm()
 
     return render(request, 'note.html', {'form': form, 'note_book_title': bk.title,})
+
+def note_detail(request, note_book_id):
+    bk = book.objects.get(book_id=note_book_id)
+    my_notes = note.objects.filter(book_title=bk.title)
+    return render(request, 'note_detail.html', {'notes': my_notes,})
+
+def contact(request):
+    errors = []
+    if request.method == 'POST':
+        if not request.POST.get('book_page', ''):
+            errors.append('Enter a book_page.')
+        if request.POST.get('book_page') and type(eval(request.POST['book_page'].trim())) != int:
+            errors.append('Enter a int number.')
+        if not request.POST.get('book_chapter', ''):
+            errors.append('Enter a book_chapter.')
+        if request.POST.get('book_note', ''):
+            errors.append('Enter book notes.')
+        if not errors:
+            return HttpResponseRedirect('/contact/thanks/')
+    return render_to_response('note.html',
+        {'errors': errors})
 
 def register(request):
     context_dict = {}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes Detail</title>
+</head>
+<body>
+  <div class="notes row">
+    {% for nt in notes %}
+    <ul>
+      <li>{{nt.author}}</li>
+      <li>{{nt.page}}</li>
+      <li>{{nt.chapter}}</li>
+      <li>{{nt.content}}</li>
+      <li>{{nt.book_title}}</li>
+      <li>{{nt.time}}</li>
+    </ul>
+    {% endfor %}
+  </div>
+</body>
+</html>

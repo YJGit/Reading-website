@@ -1,13 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Laber_detail</title>
-</head>
-<body>
-    <div>共搜集到: {{size}}</div>
-    {% for book in book_list %}
-        <div>{{book.label}}, 评分{{book.score}}</div>
-    {% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static "css/laber_detail.css" %}" />
+{% endblock %}
+
+{% block content %}
+<div class="container result">
+  <h3 class="result-intro">为您找寻到<span class="result-num">{{size}}</span>本图书</h3>
+  <ul class="result-details row">
+  {% for book in book_list %}
+    <li class="result-detail col-xs-12">
+      <div class="detail-pic col-xs-4">
+        <a href="{% url 'detail' book_id=book.book_id %}">
+          <img src={{book.cover_url}} alt={{book.title}}/>
+        </a>
+      </div>
+      <div class="detail-info col-xs-4">
+        <div class="detail-title"><a href="{% url 'detail' book_id=book.book_id %}">{{ book.title }}</a></div>
+        <div>{{book.author}}, {{book.publisher}}, {{book.publisher_date}}, {{book.price}}</div>
+      </div>
+      <div class="detail-score col-xs-4">
+        <div>悦读评分</div>
+        <div class="detail-mark">{{book.score}}</div>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}

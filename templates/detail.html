@@ -72,16 +72,16 @@
       </div>
     </div>
   </div>
-  <h3 class="row">书籍标签</h3>
+  <h3 class="label-head">书籍标签</h3>
   <div class="label-set row">
     {% for label in book_labels %}
-    <div class="book-label col-xs-3 col-md-2">
+    <div class="book-label">
       <a href="...">{{ label }}</a>
     </div>
     {% endfor %}
   </div>
-  <div class="book-remark row">
-    <div class="rating col-xs-4">
+  <div class="book-remark">
+    <div class="rating">
       <span class="rate">评价</span>
       <span class="glyphicon glyphicon-star-empty star" aria-hidden="true"></span>
       <span class="glyphicon glyphicon-star-empty star" aria-hidden="true"></span>
@@ -89,14 +89,13 @@
       <span class="glyphicon glyphicon-star-empty star" aria-hidden="true"></span>
       <span class="glyphicon glyphicon-star-empty star" aria-hidden="true"></span>
     </div>
-    <div class = "share col-xs-4">
+    <div class = "share">
       <a href = "{% url 'note_book' note_book_id=book_detail.book_id %}">写笔记</a>
       <a href = "{% url 'comment' book_id=book_detail.book_id %}">写书评</a>
-      <a href = "https://www.baidu.com">分享到</a>
     </div>
   </div>
   <div class="book-summary row">
-    <div class="book-content col-xs-5 col-xs-offset-1">
+    <div class="book-content col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">内容简介  ......</h3>
@@ -106,7 +105,7 @@
         </div>
       </div>
     </div>
-    <div class="book-directory col-xs-5 col-xs-offset-1">
+    <div class="book-directory col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-1">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">本书目录  ......</h3>
@@ -117,21 +116,23 @@
       </div>
     </div>
   </div>
-
-  <div class="notes">
+  <div class="notes row">
     {% if notes %}
-    <p>读书笔记: </p>
+    <p>读书笔记: <span>共{{length}}个</span></p>
     {% endif %}
     {% for nt in notes %}
-    <ul>
+    <>
       <li>{{nt.author}}</li>
       <li>{{nt.page}}</li>
       <li>{{nt.chapter}}</li>
       <li>{{nt.content}}</li>
       <li>{{nt.book_title}}</li>
+      <li>{{nt.time}}</li>
     </ul>
     {% endfor %}
+    {% if length > 3 %}
+    <a href = "{% url 'note_detail' note_book_id=book_id %}">更多笔记</a>
+    {% endif %}
   </div>
-
 </div>
 {% endblock %}
