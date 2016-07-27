@@ -5,28 +5,37 @@
     <title>Notes Here</title>
 </head>
 <body>
-    {% if errors %}
+    <div>
+        {% if errors %}
         <ul>
             {% for error in errors %}
             <li>{{ error }}</li>
             {% endfor %}
         </ul>
-    {% endif %}
-    <form action="/" method="post">
+        {% endif %}
+    </div>
+
+    <form action="." method="post">
+        {% csrf_token %}
+
         <div class="notes_title"><h1>写笔记   <span>《{{note_book_title}}》</span></h1></div>
         <div class="book_page">页&nbsp;码:
-            <span>第<input type="text" name="book_page" maxlength="6">页</span>
+            <span>第
+                {{form.page}}
+                {{form.page.errors}}
+                页</span>
         </div>
         <br/>
         <div class="chapter">章&nbsp;节&nbsp;名
-            <input type="text" name="book_chapter" class="basic">
+            {{form.chapter}}
+            {{form.chapter.errors}}
         </div>
         <br/>
         <div class="item_content">
             <label>笔记内容: </label>
             <div class="editor">
-                <textarea name="book_note" id="book_note" style="width:450px;height: 300px;font-size: 14px;
-                   -moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #ccc;padding: 3px;"></textarea>
+                {{form.content}}
+                {{form.content.errors}}
             </div>
         </div>
         <br/>

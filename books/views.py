@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from books.models import book, laber, UserProfile
+from books.models import book, laber, UserProfile, note
 from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from .forms import UserForm, UserProfileForm
+from .forms import UserForm, UserProfileForm, noteForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -30,7 +30,9 @@ def detail(request, book_id):
         book_detail = book.objects.get(book_id = book_id)
     except book.DoesNotExist:
         raise Http404
-    return render(request, 'detail.html', {'title': book_detail.title, 'book_detail': book_detail},)
+    notes = note.objects.filter(book_title=book_detail.title)
+    return render(request, 'detail.html', {'title': book_detail.title, 'book_detail': book_detail,
+                                           'book_labels': book_detail.label.split(), 'notes':notes,})
 
 def laber_detail(request, laber_title):
     try:
@@ -45,7 +47,7 @@ def search_book(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
         book_list = []
-        books = book.objects.all()
+        books = book.objects.order_by("-score").all()
         for bk in books:
             if q in bk.author:
                 book_list.append(bk)
@@ -67,24 +69,27 @@ def search_book(request):
     else:
         return render(request, 'search.html', {'error': True},)
 
-def notes(request, note_book_title):
-    return render(request, 'note.html', {'note_book_title':note_book_title},)
+def notes(request, note_book_id):
+    bk = book.objects.get(book_id = note_book_id)
+    params = request.POST if request.method == 'POST' else None
+    form = noteForm(params)
+    if form.is_valid():
+        nt = form.save(commit=False)
+        nt.book_title = bk.title
+        nt.author = request.user
+        nt.page = form.cleaned_data['page']
+        nt.chapter = form.cleaned_data['chapter']
+        nt.content = form.cleaned_data['content']
+        #nt.time = datetime.datetime.now().strftime("%Y-%m-%d %H:%I:%S")
+        nt.save()
 
-def contact(request):
-    errors = []
-    if request.method == 'POST':
-        if not request.POST.get('book_page', ''):
-            errors.append('Enter a book_page.')
-        if request.POST.get('book_page') and type(eval(request.POST['book_page'].trim())) != int:
-            errors.append('Enter a int number.')
-        if not request.POST.get('book_chapter', ''):
-            errors.append('Enter a book_chapter.')
-        if request.POST.get('book_note', ''):
-            errors.append('Enter book notes.')
-        if not errors:
-            return HttpResponseRedirect('/contact/thanks/')
-    return render_to_response('note.html',
-        {'errors': errors})
+        my_notes = note.objects.filter(book_title=bk.title)
+        return render(request, 'detail.html', {'notes': my_notes, 'title': bk.title,
+                                               'book_detail': bk, 'book_labels': bk.label.split()},)
+    else:
+        form = noteForm()
+
+    return render(request, 'note.html', {'form': form, 'note_book_title': bk.title,})
 
 def register(request):
     context_dict = {}
@@ -161,3 +166,10 @@ def set_account(request, username_slug):
 
 def set_account_success(request):
     return render(request, 'set_account_success.html', {})
+
+def comment(request, book_id):
+    try:
+        comment_detail = book.objects.get(book_id = book_id)
+    except book.DoesNotExist:
+        raise Http404
+    return render(request, 'comment.html', {'comment_detail': comment_detail})    

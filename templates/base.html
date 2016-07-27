@@ -56,26 +56,27 @@
         <div class="search-intro">
           <p><span class="glyphicon glyphicon-search icon" aria-hidden="true"></span>&nbsp;总有一本好书可引你共鸣</p>
         </div>
-        <div class="input-group">
-          <!--
-          <input type="text" class="form-control" placeholder="输入作者，ISBN码，有意义的词汇">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-          </span>
-          -->
-          <form action="/book/search/" method="get">
+        <form action="/book/search/" method="get">
+          <div class="input-group">
             <input type="text" class="form-control" name = "q" placeholder="输入作者，ISBN码，有意义的词汇">
             <span class="input-group-btn">
               <button class="btn btn-default" type="submit">Go!</button>
             </span>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 {% endblock %}
 {% block content %}
 {% endblock %}
+  <footer class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">悦读网</div>
+      <div class="col-xs-12">Powered By 杨景 于科屹 马子俊</div>
+      <div class="col-xs-12">本站代码详见 https://github.com/YJGit/reading_website</div>
+    </div>
+  </footer>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 {% block js_link %}

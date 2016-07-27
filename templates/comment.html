@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+悦读网
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/comment.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div id = "left">
+        <p></p>
+    </div>
+    <div id = "middle">
+        <h2>评论{{comment_detail.title}}</h2>
+        <p>题目</p>
+        <form method="get">
+            <p><input type="text" name="fname" id = "timu"/></p>
+            <div id = "rate">
+                <label class = "field">评价:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="1">很差:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="1">较差:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="1">还行:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="1">推荐:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="1">力荐:</label>
+            </div>
+            <p>正文</p>
+            <p><textarea id="zhengwen" name="rev_text"></textarea></p>
+            <div class="row-footer">
+              <span class="bn-flat cancel-review">
+                <input id="publish_review" value="发表" type="submit" name="rev_submit" href="detail.html">
+                <input id="cancel_review" value="取消" type="submit" name="review_cancel">
+              </span>
+          </div>
+        </form>
+        <div id="footer">editor : 清华大学软件学院   Mzj马子俊  Yj杨景  Yky于科屹</div>
+    </div>
+    <div id = "right">
+        <p>请尊重创作者的劳动，勿提供下载信息、或转载他人的文章。
+
+            为了鼓励有益的分享, 少于50字的评论将在前页论坛里发表。
+
+            如果评论涉及电影和小说的结局和关键情节，请勾选“有关键情节透露”。豆瓣将显示提示，以免没有看过的人扫兴。</p>
+    </div>
+{% endblock %}

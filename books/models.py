@@ -28,6 +28,17 @@ class laber(models.Model):
     def __str__(self):
         return self.title
 
+class note(models.Model):
+    author = models.CharField(max_length = 30)
+    book_title = models.CharField(max_length = 100)
+    content = models.CharField(max_length = 150)
+    page = models.IntegerField()
+    chapter = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.author
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
