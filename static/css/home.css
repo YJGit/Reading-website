@@ -38,12 +38,16 @@
   }
 }
 
+
+
 .carousel-indicators{
   margin-bottom: 20px;
 }
 
 .item-caption{
   text-align: center;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .carousel-control.left, .carousel-control.right{

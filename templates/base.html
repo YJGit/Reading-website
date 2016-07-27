@@ -33,13 +33,17 @@
         </ul>
         {% if user.is_authenticated %}
         <ul class="nav navbar-nav in">
-          <li><a href="/account/{{ user.username }}">我的悦读</a></li>
+          <li class="me">
+            {% block user_img_block %}
+            {% load user_img %}
+            {% get_user_img user %}
+            {% endblock %}
+            <a href="/account/{{ user.username }}">
+              我的悦读
+            </a>
+          </li>
           <li><a href="/logout/">退出登录</a></li>
         </ul>
-        {% block user_img_block %}
-        {% load user_img %}
-        {% get_user_img user %}
-        {% endblock %}
         {% else %}
         <ul class="nav navbar-nav out">
           <li><a href="/login/">登录</a></li>

@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block title %}用户注册{% endblock %}
+{% block title %}用户登录{% endblock %}
 {% block css_link %}
-  <link rel="stylesheet" href="{% static "css/register.css" %}" />
+  <link rel="stylesheet" href="{% static "css/login.css" %}" />
 {% endblock %}
 {% block search %}
 {% endblock %}
 {% block content %}
-<body>
-    <p class="warning">{{ error_message }}</p>
-    <p class=""warning">{{ disabled_message }}</p>
-    <form id="login_form" method="post" action="/login/">
-        {% csrf_token %}
-        <h2>登录悦读网</h2>
-        <label for="username">用户名</label>
-        <input type="text" name="username" value=""/>
-        <label for="password">密码</label>
-        <input type="password" name="password" value=""/>
-        <input type="submit" name="submit" value="登录"/>
+  <div class="error">
+    {{ error_message }}
+    {{ disabled_message }}
+  </div>
+  <div class="container login">
+    <form class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3"
+      id="login_form" method="post" action="/login/">
+      {% csrf_token %}
+      <h2>登录悦读&nbsp;&nbsp;成为读书者的一员</h2>
+      <label for="username">用户名</label>
+      <input type="text" name="username" value=""/>
+      <label for="password">密码</label>
+      <input type="password" name="password" value=""/>
+      <input type="submit" name="submit" value="登录"/>
     </form>
-</body>
-</html>
+  </div>
+{% endblock %}
+{% block footer%}
+{% endblock %}
