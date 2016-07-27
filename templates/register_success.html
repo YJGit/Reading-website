@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static "css/register_success.css" %}" />
-</head>
-<body>
-    <div>
-        <p>感谢您注册阅读网！</p>
-        <p>请移步至<a href="/">首页</a>登陆~</p>
-    </div>
-</body>
-</html>
+{% block title %}注册成功{% endblock %}
+{% block css_link %}
+  <link rel="stylesheet" href="{% static "css/register_success.css" %}" />
+{% endblock %}
+{% block navigation %}
+{% endblock %}
+{% block search %}
+{% endblock %}
+{% block content %}
+  <div class="register-success">
+      <p>感谢您注册阅读网！</p>
+      <p>请移步至<a href="/">首页</a>登录~</p>
+  </div>
+{% endblock %}

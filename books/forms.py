@@ -11,7 +11,7 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('picture',)
+        fields = ('picture', 'address')
 
 class noteForm(forms.ModelForm):
     time = forms.CharField(required=False)

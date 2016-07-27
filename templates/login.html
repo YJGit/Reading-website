@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>用户登录</title>
-    <link rel="stylesheet" href="{% static "css/login.css" %}" />
-</head>
+{% block title %}用户注册{% endblock %}
+{% block css_link %}
+  <link rel="stylesheet" href="{% static "css/register.css" %}" />
+{% endblock %}
+{% block search %}
+{% endblock %}
+{% block content %}
 <body>
     <p class="warning">{{ error_message }}</p>
     <p class=""warning">{{ disabled_message }}</p>
