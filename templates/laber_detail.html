@@ -43,7 +43,7 @@
 <script>
   $(function () {
     // prepare the pagination button
-    var bookNum = {{ size_js|safe }};
+    var bookNum = {{ book_list|length }};
     var numPerPage = 20;
     var pageNum = Math.ceil(bookNum / numPerPage);
     var textHtml = '';

@@ -1,0 +1,15 @@
+.wrong-info{
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: 500;
+  color: purple;
+}
+
+.wrong-info + footer{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
