@@ -56,3 +56,9 @@
     font-size: 12px;
     margin-top: 10px;
 }
+#notshow1{
+    display: none;
+}
+#notshow2{
+    display: none;
+}

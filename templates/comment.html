@@ -17,22 +17,23 @@
     <div id = "middle">
         <h2>评论{{comment_detail.title}}</h2>
         <p>题目</p>
-        <form method="get">
+        <form action="http://127.0.0.1:8000/book_detail/{{comment_detail.book_id}}/" method="get">
             <p><input type="text" name="fname" id = "timu"/></p>
+            <p><input type="text" value = "{{user.username}}" name="user" id = "notshow1"/></p>
+            <p><input type="text" value = "{{comment_detail.title}}" name="bkname" id = "notshow2"/></p>
             <div id = "rate">
                 <label class = "field">评价:</label>
                 <label class = "ch"><input name="rev_rating" type="radio" value="1">很差:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="1">较差:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="1">还行:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="1">推荐:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="1">力荐:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="2">较差:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="3">还行:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="4">推荐:</label>
+                <label class = "ch"><input name="rev_rating" type="radio" value="5">力荐:</label>
             </div>
             <p>正文</p>
             <p><textarea id="zhengwen" name="rev_text"></textarea></p>
             <div class="row-footer">
               <span class="bn-flat cancel-review">
                 <input id="publish_review" value="发表" type="submit" name="rev_submit" href="detail.html">
-                <input id="cancel_review" value="取消" type="submit" name="review_cancel">
               </span>
           </div>
         </form>

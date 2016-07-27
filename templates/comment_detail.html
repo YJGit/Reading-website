@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comments Detail</title>
+</head>
+<body>
+  <div class="comments row">
+    {% for comment in comment_list %}
+        <p><strong>题目：{{ comment.comment_title }}</strong></p>  
+        <p><strong>评分：{{ comment.comment_rate }}</strong></p>
+        <p><strong>内容：{{ comment.comment_content }}</strong></p>
+        <p><strong>用户：{{ comment.comment_user }}</strong></p> 
+    {% endfor %}
+  </div>
+</body>
+</html>

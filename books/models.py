@@ -44,3 +44,12 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile_images', blank=True)
     def __str__(self):
         return self.user.username
+
+class Comment(models.Model):
+    comment_user = models.CharField(max_length = 30)
+    comment_book = models.CharField(max_length = 30)
+    comment_title = models.CharField(max_length = 30)
+    comment_rate = models.CharField(max_length = 30)
+    comment_content = models.CharField(max_length = 300)
+    def __str__(self):
+        return self.comment_user

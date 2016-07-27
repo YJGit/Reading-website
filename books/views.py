@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from books.models import book, laber, UserProfile, note
+from books.models import book, laber, UserProfile, note, Comment
 from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .forms import UserForm, UserProfileForm, noteForm
@@ -27,17 +27,51 @@ def top25(request):
     return render(request, 'home.html', {'book_list': book_list, 'title': 'book_website',})
 
 def detail(request, book_id):
+    flag = 0
+    if 'fname' in request.GET:
+        flag = 1
+        message1 = request.GET['fname']
+    else:
+        message1 = ['']
+    if 'rev_rating' in request.GET:
+        flag = 1
+        message2 = request.GET['rev_rating']
+    else:
+        message2 = ['']
+    if 'rev_text' in request.GET:
+        flag = 1
+        message3 = request.GET['rev_text']
+    else:
+        message3 = ['']
+    if 'user' in request.GET:
+        message4 = request.GET['user']
+    else:
+        message4 = ['']
+    if 'bkname' in request.GET:
+        message5 = request.GET['bkname']
+    else:
+        message5 = ['']
     try:
         book_detail = book.objects.get(book_id = book_id)
         nt = note.objects.filter(book_title=book_detail.title)
     except book.DoesNotExist:
         raise Http404
+
     length = len(nt)
     if length > 3:
         nt = nt[length - 3: ]
-    return render(request, 'detail.html', {'title': book_detail.title, 'book_detail': book_detail,
+    if flag == 1:
+        Comment.objects.create(comment_rate = message2, comment_title = message1, comment_content = message3, comment_user = message4, comment_book = message5)
+    try:
+        comment_list = Comment.objects.filter(comment_book = book_detail.title)
+    except:
+        comment_list = []
+    size = len(comment_list)
+    if size > 3:
+        comment_list = comment_list[size - 3: ]
+    return render(request, 'detail.html', {'comment_list':comment_list, 'title': book_detail.title, 'book_detail': book_detail,
                                            'book_labels': book_detail.label.split(), 'notes': nt,
-                                           'length':length, 'book_id': book_id,})
+                                           'length':length, 'book_id': book_id, 'size':size,})
 
 def laber_detail(request, laber_title):
     try:
@@ -104,6 +138,11 @@ def note_detail(request, note_book_id):
     bk = book.objects.get(book_id=note_book_id)
     my_notes = note.objects.filter(book_title=bk.title)
     return render(request, 'note_detail.html', {'notes': my_notes,})
+
+def comment_detail(request, book_id):
+    book_detail = book.objects.get(book_id = book_id)
+    comment_list = Comment.objects.filter(comment_book = book_detail.title)
+    return render(request, 'comment_detail.html', {'comment_list': comment_list,})
 
 def contact(request):
     errors = []

@@ -116,12 +116,24 @@
       </div>
     </div>
   </div>
+  <div id = "comment_show">
+    <p>书评：</p>
+    {% for comment in comment_list %}
+        <p><strong>题目：{{ comment.comment_title }}</strong></p>  
+        <p><strong>评分：{{ comment.comment_rate }}</strong></p>
+        <p><strong>内容：{{ comment.comment_content }}</strong></p>
+        <p><strong>用户：{{ comment.comment_user }}</strong></p> 
+    {% endfor %}
+    {% if size > 3 %}
+        <a href = "{% url 'comment_detail' book_id=book_detail.book_id %}">更多书评</a>
+    {% endif %}
+  </div>    
   <div class="notes row">
     {% if notes %}
     <p>读书笔记: <span>共{{length}}个</span></p>
     {% endif %}
     {% for nt in notes %}
-    <>
+    <ul>
       <li>{{nt.author}}</li>
       <li>{{nt.page}}</li>
       <li>{{nt.chapter}}</li>
