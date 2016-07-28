@@ -120,7 +120,7 @@
     <p>书评：</p>
     {% for comment in comment_list %}
         <p><strong>题目：{{ comment.comment_title }}</strong></p>  
-        <p><strong>评分：{{ comment.comment_rate }}</strong></p>
+        <!--<p><strong>评分：{{ comment.comment_rate }}</strong></p>-->
         <p><strong>内容：{{ comment.comment_content }}</strong></p>
         <p><strong>用户：{{ comment.comment_user }}</strong></p> 
     {% endfor %}

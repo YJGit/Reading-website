@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-悦读网
+写写书评
 {% endblock %}
 
 {% load staticfiles %}
@@ -9,41 +9,30 @@
 {% block css_link %}
     <link rel="stylesheet" href="{% static 'css/comment.css' %}" />
 {% endblock %}
-
+{% block search %}
+{% endblock %}
 {% block content %}
-    <div id = "left">
-        <p></p>
-    </div>
-    <div id = "middle">
-        <h2>评论{{comment_detail.title}}</h2>
-        <p>题目</p>
-        <form action="http://127.0.0.1:8000/book_detail/{{comment_detail.book_id}}/" method="get">
-            <p><input type="text" name="fname" id = "timu"/></p>
-            <p><input type="text" value = "{{user.username}}" name="user" id = "notshow1"/></p>
-            <p><input type="text" value = "{{comment_detail.title}}" name="bkname" id = "notshow2"/></p>
-            <div id = "rate">
-                <label class = "field">评价:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="1">很差:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="2">较差:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="3">还行:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="4">推荐:</label>
-                <label class = "ch"><input name="rev_rating" type="radio" value="5">力荐:</label>
-            </div>
-            <p>正文</p>
-            <p><textarea id="zhengwen" name="rev_text"></textarea></p>
-            <div class="row-footer">
-              <span class="bn-flat cancel-review">
-                <input id="publish_review" value="发表" type="submit" name="rev_submit" href="detail.html">
-              </span>
+  <div id="comment" class="container">
+      <form action="http://127.0.0.1:8000/book_detail/{{comment_detail.book_id}}/"
+            class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1" method="get">
+          <h2>评论 — {{comment_detail.title}}</h2>
+          <div class="comment-title">
+            <label>题目</label>
+            <input type="text" name="fname" id = "timu"/>
           </div>
-        </form>
-        <div id="footer">editor : 清华大学软件学院   Mzj马子俊  Yj杨景  Yky于科屹</div>
-    </div>
-    <div id = "right">
-        <p>请尊重创作者的劳动，勿提供下载信息、或转载他人的文章。
-
-            为了鼓励有益的分享, 少于50字的评论将在前页论坛里发表。
-
-            如果评论涉及电影和小说的结局和关键情节，请勾选“有关键情节透露”。豆瓣将显示提示，以免没有看过的人扫兴。</p>
-    </div>
+          <input type="text" value = "{{user.username}}" name="user" id = "notshow1"/>
+          <input type="text" value = "{{comment_detail.title}}" name="bkname" id = "notshow2"/>
+          <div class="comment-content">
+            <label>正文</label>
+            <textarea id="zhengwen" name="rev_text"></textarea>
+          </div>
+          <div class="row-footer">
+            <span class="bn-flat cancel-review">
+              <input id="publish_review" class="btn btn-success" value="发表" type="submit" name="rev_submit" href="detail.html">
+            </span>
+          </div>
+      </form>
+  </div>
+{% endblock %}
+{% block footer %}
 {% endblock %}

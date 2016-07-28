@@ -109,6 +109,7 @@ def search_book(request):
     else:
         return render(request, 'search.html', {'error': True},)
 
+@login_required
 def notes(request, note_book_id):
     bk = book.objects.get(book_id = note_book_id)
     params = request.POST if request.method == 'POST' else None
