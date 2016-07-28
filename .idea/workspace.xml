@@ -31,7 +31,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.60276586">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/books/views.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="448">
@@ -46,8 +46,8 @@
           <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/detail.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1084">
-                  <caret line="146" column="8" selection-start-line="129" selection-start-column="2" selection-end-line="146" selection-end-column="8" />
+                <state relative-caret-position="1214">
+                  <caret line="151" column="8" selection-start-line="129" selection-start-column="2" selection-end-line="146" selection-end-column="8" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#2;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -93,7 +93,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="note_detail.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="note_detail.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/note_detail.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="234">
@@ -1062,8 +1062,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1084">
-          <caret line="146" column="8" selection-start-line="129" selection-start-column="2" selection-end-line="146" selection-end-column="8" />
+        <state relative-caret-position="1214">
+          <caret line="151" column="8" selection-start-line="129" selection-start-column="2" selection-end-line="146" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#2;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1086,16 +1086,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/books/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="189" column="68" selection-start-line="189" selection-start-column="68" selection-end-line="189" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/detail.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -1110,6 +1100,16 @@
           <caret line="9" column="66" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#1;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="189" column="68" selection-start-line="189" selection-start-column="68" selection-end-line="189" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

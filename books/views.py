@@ -197,7 +197,7 @@ def comment_detail(request, book_id):
 def cment_reply(request, comment_id):
     params = request.POST if request.method == 'POST' else None
     form = comment_replyForm(params)
-    comments = Comment.objects.get(comment_id=comment_id)
+    comments = Comment.objects.filter(comment_id=comment_id)[0]
     if form.is_valid():
         reply = form.save(commit=False)
         reply.author = request.user
