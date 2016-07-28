@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^laber_detail/(?P<laber_title>.*)/$', views.laber_detail, name='laber'),
     url(r'^book/note/(?P<note_book_id>\d+)/$', views.notes, name='note_book'),
     url(r'^book/note_detail/(?P<note_book_id>\d+)/$', views.note_detail, name='note_detail'),
+    url(r'^book/search/(?P<laber_title>.*)/$', views.laber_search, name='laber_search'),
 ]

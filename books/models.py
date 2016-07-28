@@ -19,6 +19,8 @@ class book(models.Model):
     content_intro = models.CharField(max_length = 1000, blank = True)
     directory = models.CharField(max_length = 1000, blank = True)
     book_id = models.IntegerField()
+    score_star = models.CharField(max_length=100, default='')
+
 
     def __str__(self):
         return self.title

@@ -70,9 +70,24 @@ def detail(request, book_id):
     size = len(comment_list)
     if size > 3:
         comment_list = comment_list[size - 3: ]
-    return render(request, 'detail.html', {'comment_list':comment_list, 'title': book_detail.title, 'book_detail': book_detail,
+    if len(book_detail.score_star) > 4:
+        score_star = book_detail.score_star.split()
+        five_star = score_star[0]
+        four_star = score_star[1]
+        there_star = score_star[2]
+        two_star = score_star[3]
+        one_star = score_star[4]
+    else:
+        five_star = '0%'
+        four_star = '0%'
+        there_star = '0%'
+        two_star = '0%'
+        one_star = '0%'
+    return render(request, 'detail.html', {'title': book_detail.title, 'book_detail': book_detail,
                                            'book_labels': book_detail.label.split(), 'notes': nt,
-                                           'length':length, 'book_id': book_id, 'size':size,})
+                                           'length': length, 'book_id': book_id, 'five_star': five_star,
+                                           'four_star': four_star, 'there_star': there_star,
+                                           'two_star': two_star, 'one_star': one_star,})
 
 def laber_detail(request, laber_title):
     try:
@@ -109,6 +124,17 @@ def search_book(request):
     else:
         return render(request, 'search.html', {'error': True},)
 
+def laber_search(request, laber_title):
+    book_list = []
+    books = book.objects.order_by("-score").all()
+    for bk in books:
+        if laber_title in bk.label:
+            book_list.append(bk)
+    if len(book_list):
+        return render(request, 'search.html', {'book_list': book_list, 'query': laber_title,},)
+    else:
+        return render(request, 'search.html', {'error': True},)
+    
 @login_required
 def notes(request, note_book_id):
     bk = book.objects.get(book_id = note_book_id)
