@@ -110,10 +110,17 @@ h3.label-head{
   margin: 20px;
 }
 
+.book-comment-list li::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
 .book-comment, .book-note{
   color: #351B00;
   line-height: 24px;
   font-size: 18px;
+  margin-left: 15px;
 }
 
 .book-comment-info{
@@ -123,6 +130,7 @@ h3.label-head{
 
 .book-comment-content{
   color: #351B00;
+  margin: 10px;
 }
 
 .book-comment-more{
@@ -139,6 +147,12 @@ h3.label-head{
   margin: 20px;
 }
 
+.book-note-list li::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
 .book-note-info{
   background-color: #351B00;
   color: white;
@@ -146,6 +160,7 @@ h3.label-head{
 
 .book-note-content{
   color: #351B00;
+  margin: 10px;
 }
 
 .book-note-more{
@@ -155,6 +170,11 @@ h3.label-head{
 
 .book-note-more:hover{
   color: #351B00;
+}
+
+.reply{
+  float: right;
+  padding-right: 5px;
 }
 
 

@@ -222,8 +222,7 @@ def contact(request):
             errors.append('Enter book notes.')
         if not errors:
             return HttpResponseRedirect('/contact/thanks/')
-    return render_to_response('note.html',
-        {'errors': errors})
+    return render_to_response('note.html', {'errors': errors})
 
 def register(request):
     context_dict = {}
@@ -288,6 +287,9 @@ def set_account(request, username_slug):
         new_email = request.POST.get('new_email')
         if new_email:
             old_user.email = new_email
+        new_address = request.POST.get('new_address')
+        if new_address:
+            old_user.address = new_address
         old_user_profile.user = old_user
         if 'new_picture' in request.FILES:
             old_user_profile.picture = request.FILES['new_picture']

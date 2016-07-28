@@ -38,8 +38,6 @@
   }
 }
 
-
-
 .carousel-indicators{
   margin-bottom: 20px;
 }
@@ -52,4 +50,8 @@
 
 .carousel-control.left, .carousel-control.right{
   background-image: none;
+}
+
+.pagination{
+  float: right;
 }

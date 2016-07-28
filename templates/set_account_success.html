@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>账户设置成功</title>
-    <link rel="stylesheet" href="{% static "css/set_account_success.css" %}"
-</head>
-<body>
-    <div>
-        <p>账户修改成功！</p>
-        <p>请移步至<a href="/">首页</a>重新登陆~</p>
-    </div>
-</body>
-</html>
+{% block title %}账户修改成功{% endblock %}
+{% block css_link %}
+  <link rel="stylesheet" href="{% static "css/set_account_success.css" %}" />
+{% endblock %}
+{% block navigation %}
+{% endblock %}
+{% block search %}
+{% endblock %}
+{% block content %}
+  <div class="set-account-success">
+    <p>账户修改成功！</p>
+    <p>请移步至<a href="/">首页</a>重新登陆~</p>
+  </div>
+{% endblock %}

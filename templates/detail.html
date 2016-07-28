@@ -117,9 +117,9 @@
         <p>{{ comment.comment_user }}&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.comment_title }}&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.comment_rate }}分</p>
       </div>
       <div class="book-comment-content">
-        <p>内容：{{ comment.comment_content }}</p>
+        <p style="text-indent: 2em">{{ comment.comment_content }}</p>
       </div>
-      <span style="text_align: right;"><a href="{% url 'comment_reply' comment_id=comment.comment_id %}">回应</a></span></p>
+      <span class="reply"><a href="{% url 'comment_reply' comment_id=comment.comment_id %}">我要回应/查看回应</a></span></p>
     </li>
     {% endfor %}
     </ul>
@@ -136,7 +136,7 @@
           <p>{{nt.author}}&nbsp;&nbsp;&nbsp;&nbsp;第{{nt.chapter}}张 第{{nt.page}}页</p>
         </div>
         <div class="book-note-content">
-          <p>{{nt.content}}</p>
+          <p style="text-indent: 2em">{{nt.content}}</p>
         </div>
       </li>
     {% endfor %}

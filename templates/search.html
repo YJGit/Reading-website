@@ -54,7 +54,7 @@
   $(function () {
     // prepare the pagination button
     var bookNum = {{book_list|length}};
-    var numPerPage = 20;
+    var numPerPage = 10;
     var pageNum = Math.ceil(bookNum / numPerPage);
     var textHtml = '';
     for (var i = 1; i <= pageNum; i++){
