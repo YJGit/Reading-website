@@ -116,34 +116,40 @@
       </div>
     </div>
   </div>
-  <div id = "comment_show">
-    <p>书评：</p>
+  <div class="comment-show row">
+    <p class="book-comment">关于《{{ book_detail.title}}》的书评：</p>
+    <ul class="book-comment-list col-xs-12 col-sm-10 col-sm-offset-1">
     {% for comment in comment_list %}
-        <p><strong>题目：{{ comment.comment_title }}</strong></p>  
-        <!--<p><strong>评分：{{ comment.comment_rate }}</strong></p>-->
-        <p><strong>内容：{{ comment.comment_content }}</strong></p>
-        <p><strong>用户：{{ comment.comment_user }}</strong></p> 
+    <li>
+      <div class="book-comment-info">
+        <p>{{ comment.comment_user }}&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.comment_title }}&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.comment_rate }}分</p>
+      </div>
+      <div class="book-comment-content">
+        <p>内容：{{ comment.comment_content }}</p>
+      </div>
+    </li>
     {% endfor %}
+    </ul>
     {% if size > 3 %}
-        <a href = "{% url 'comment_detail' book_id=book_detail.book_id %}">更多书评</a>
+      <a class="book-comment-more col-xs-12 col-sm-10 col-sm-offset-1" href="{% url 'comment_detail' book_id=book_detail.book_id %}">>>>更多书评</a>
     {% endif %}
   </div>    
-  <div class="notes row">
-    {% if notes %}
-    <p>读书笔记: <span>共{{length}}个</span></p>
-    {% endif %}
+  <div class="book-notes row">
+    <p class="book-note">关于《{{book_detail.title}}》的读书笔记:</p>
+    <ul class="book-note-list col-xs-12 col-sm-10 col-sm-offset-1">
     {% for nt in notes %}
-    <ul>
-      <li>{{nt.author}}</li>
-      <li>{{nt.page}}</li>
-      <li>{{nt.chapter}}</li>
-      <li>{{nt.content}}</li>
-      <li>{{nt.book_title}}</li>
-      <li>{{nt.time}}</li>
-    </ul>
+      <li>
+        <div class="book-note-info">
+          <p>{{nt.author}}&nbsp;&nbsp;&nbsp;&nbsp;第{{nt.chapter}}张 第{{nt.page}}页</p>
+        </div>
+        <div class="book-note-content">
+          <p>{{nt.content}}</p>
+        </div>
+      </li>
     {% endfor %}
+    </ul>
     {% if length > 3 %}
-    <a href = "{% url 'note_detail' note_book_id=book_id %}">更多笔记</a>
+    <a class="book-note-more col-xs-12 col-sm-10 col-sm-offset-1" href="{% url 'note_detail' note_book_id=book_id %}">更多笔记</a>
     {% endif %}
   </div>
 </div>

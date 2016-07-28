@@ -128,3 +128,57 @@ h3.label-head{
 .book-directory{
   margin-top: 20px;
 }
+
+.book-comment-list li{
+  border: 2px solid #351B00;
+  margin: 20px;
+}
+
+.book-comment, .book-note{
+  color: #351B00;
+  line-height: 24px;
+  font-size: 18px;
+}
+
+.book-comment-info{
+  background-color: #351B00;
+  color: white;
+}
+
+.book-comment-content{
+  color: #351B00;
+}
+
+.book-comment-more{
+  color: #351B00;
+  text-align: right;
+}
+
+.book-comment-more:hover{
+  color: #351B00;
+}
+
+.book-note-list li{
+  border: 2px solid #351B00;
+  margin: 20px;
+}
+
+.book-note-info{
+  background-color: #351B00;
+  color: white;
+}
+
+.book-note-content{
+  color: #351B00;
+}
+
+.book-note-more{
+  color: #351B00;
+  text-align: right;
+}
+
+.book-note-more:hover{
+  color: #351B00;
+}
+
+
