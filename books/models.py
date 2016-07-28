@@ -41,6 +41,15 @@ class note(models.Model):
     def __str__(self):
         return self.author
 
+class comment_reply(models.Model):
+    author = models.CharField(max_length=30)
+    content = models.CharField(max_length=250)
+    time = models.CharField(max_length=50)
+    comment_id = models.CharField(max_length=100, default="")
+
+    def __str__(self):
+        return self.author
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
@@ -54,5 +63,7 @@ class Comment(models.Model):
     comment_title = models.CharField(max_length = 30)
     comment_rate = models.CharField(max_length = 30)
     comment_content = models.CharField(max_length = 300)
+    comment_id = models.CharField(max_length=100, default="")
+    comment_time = models.CharField(max_length = 100, blank=True)
     def __str__(self):
         return self.comment_user

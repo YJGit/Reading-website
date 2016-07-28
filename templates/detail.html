@@ -119,6 +119,7 @@
       <div class="book-comment-content">
         <p>内容：{{ comment.comment_content }}</p>
       </div>
+      <span style="text_align: right;"><a href="{% url 'comment_reply' comment_id=comment.comment_id %}">回应</a></span></p>
     </li>
     {% endfor %}
     </ul>
@@ -141,7 +142,7 @@
     {% endfor %}
     </ul>
     {% if length > 3 %}
-    <a class="book-note-more col-xs-12 col-sm-10 col-sm-offset-1" href="{% url 'note_detail' note_book_id=book_id %}">更多笔记</a>
+    <a class="book-note-more col-xs-12 col-sm-10 col-sm-offset-1" href="{% url 'note_detail' note_book_id=book_id %}">>>>更多笔记</a>
     {% endif %}
   </div>
 </div>

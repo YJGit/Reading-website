@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from books.models import book, laber, UserProfile, note, Comment
+from books.models import book, laber, UserProfile, note, Comment, comment_reply
 from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from .forms import UserForm, UserProfileForm, noteForm
+from .forms import UserForm, UserProfileForm, noteForm, comment_replyForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -87,7 +87,8 @@ def detail(request, book_id):
                                            'book_labels': book_detail.label.split(), 'notes': nt,
                                            'length': length, 'book_id': book_id, 'five_star': five_star,
                                            'four_star': four_star, 'there_star': there_star,
-                                           'two_star': two_star, 'one_star': one_star,})
+                                           'two_star': two_star, 'one_star': one_star,
+                                           'comment_list': comment_list, 'size': size,})
 
 def laber_detail(request, laber_title):
     try:
@@ -135,6 +136,7 @@ def laber_search(request, laber_title):
     else:
         return render(request, 'search.html', {'error': True},)
 
+
 @login_required
 def notes(request, note_book_id):
     bk = book.objects.get(book_id = note_book_id)
@@ -154,9 +156,29 @@ def notes(request, note_book_id):
         length = len(my_notes)
         if len(my_notes) > 3:
             my_notes = my_notes[len(my_notes) - 3:]
+        comment_list = Comment.objects.filter(comment_book = bk.title)
+        size = len(comment_list)
+        if size > 3:
+            comment_list = comment_list[size-3:]
+        if len(bk.score_star) > 4:
+            score_star = bk.score_star.split()
+            five_star = score_star[0]
+            four_star = score_star[1]
+            there_star = score_star[2]
+            two_star = score_star[3]
+            one_star = score_star[4]
+        else:
+            five_star = '0%'
+            four_star = '0%'
+            there_star = '0%'
+            two_star = '0%'
+            one_star = '0%'
         return render(request, 'detail.html', {'notes': my_notes, 'title': bk.title,
                                                'book_detail': bk, 'book_labels': bk.label.split(),
-                      'length': length, 'book_id': bk.book_id,})
+                      'length': length, 'book_id': bk.book_id, 'comment_list': comment_list, 'size': size,
+                                               'five_star': five_star,
+                                               'four_star': four_star, 'there_star': there_star,
+                                               'two_star': two_star, 'one_star': one_star,})
     else:
         form = noteForm()
 
@@ -171,6 +193,21 @@ def comment_detail(request, book_id):
     book_detail = book.objects.get(book_id = book_id)
     comment_list = Comment.objects.filter(comment_book = book_detail.title)
     return render(request, 'comment_detail.html', {'comment_list': comment_list,})
+
+def cment_reply(request, comment_id):
+    params = request.POST if request.method == 'POST' else None
+    form = comment_replyForm(params)
+    comments = Comment.objects.get(comment_id=comment_id)
+    if form.is_valid():
+        reply = form.save(commit=False)
+        reply.author = request.user
+        reply.content = form.cleaned_data['content']
+        reply.time = "" + datetime.datetime.now().strftime("%Y-%m-%d %H:%I:%S")
+        reply.comment_id = comment_id
+        reply.save()
+        form = comment_replyForm()
+    my_replys = comment_reply.objects.filter(comment_id=comment_id)
+    return render(request, 'comment_reply.html', {'form':form, 'replys':my_replys, 'comment':comments,})
 
 def contact(request):
     errors = []
@@ -264,6 +301,7 @@ def set_account(request, username_slug):
 def set_account_success(request):
     return render(request, 'set_account_success.html', {})
 
+@login_required
 def comment(request, book_id):
     try:
         comment_detail = book.objects.get(book_id = book_id)
