@@ -102,7 +102,7 @@ def search_book(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
         book_list = []
-        books = book.objects.all()
+        books = book.objects.order_by('-score').all()
         for bk in books:
             if q in bk.author:
                 book_list.append(bk)
@@ -134,7 +134,7 @@ def laber_search(request, laber_title):
         return render(request, 'search.html', {'book_list': book_list, 'query': laber_title,},)
     else:
         return render(request, 'search.html', {'error': True},)
-    
+
 @login_required
 def notes(request, note_book_id):
     bk = book.objects.get(book_id = note_book_id)
