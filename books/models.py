@@ -32,9 +32,9 @@ class note(models.Model):
     time = models.CharField(max_length = 50, default="")
     author = models.CharField(max_length = 30)
     book_title = models.CharField(max_length = 100)
-    content = models.CharField(max_length = 150)
+    content = models.CharField(max_length = 1000, blank=False)
     page = models.IntegerField()
-    chapter = models.CharField(max_length = 100)
+    chapter = models.CharField(max_length = 100, blank=False)
 
     def __str__(self):
         return self.author

@@ -19,7 +19,7 @@ class noteForm(forms.ModelForm):
     book_title = forms.CharField(required=False)
     page = forms.IntegerField(required=True)
     chapter = forms.CharField(max_length = 100, required=True)
-    content = forms.CharField(max_length = 200, widget=forms.Textarea, required=True)
+    content = forms.CharField(max_length = 1000, widget=forms.Textarea, required=True)
     class Meta:
         model = note
         fields = ('chapter', 'page', 'content',)
