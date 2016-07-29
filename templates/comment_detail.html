@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+更多书评
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="comment-show row">
+  <p class="book-comment">更多书评：</p>
+  <ul class="book-comment-list col-xs-12 col-sm-10 col-sm-offset-1">
+  {% for comment in comment_list %}
+  <li>
+    <div class="book-comment-info">
+      <p>{{ comment.comment_user }}&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.comment_title }}&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.comment_rate }}分</p>
+    </div>
+    <div class="book-comment-content">
+      <p style="text-indent: 2em">{{ comment.comment_content }}</p>
+    </div>
+    <span class="reply"><a href="{% url 'comment_reply' comment_id=comment.comment_id %}">我要回应/查看回应</a></span></p>
+  </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}

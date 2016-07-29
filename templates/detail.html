@@ -4,120 +4,164 @@
 {{title}}
 {% endblock %}
 
-{% block staticfiles %}{% load staticfiles %}{% endblock %}
+{% load staticfiles %}
 
 {% block css_link %}
-    <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+    <link rel="stylesheet" href="{% static "css/detail.css" %}" />
 {% endblock %}
 
 {% block content %}
-<div id="wrapper">
-    <h1>
-        <span class="detail_title">{{book_detail.title}}</span>
-        <div class="clear"></div>
-    </h1>
-    <div id="content">
-        <div class="article">
-            <div class="subjectwrap">
-                <div class="subject">
-                    <div id="mainpic">
-                        <a class="nbg" href={{book_detail.cover_url}} title={{book_detail.title}}>
-                            <img src={{book_detail.cover_url}} title="点击查看大图" alt={{book_detail.title}}>
-                        </a>
-                    </div>
-                    <div id="info">
-                        <div class="book_author">作者: <span class="show">{{book_detail.author}}</span></div>
-                        <div class="book_publisher">出版社: <span class="show">{{book_detail.publisher}}</span></div>
-                        {% if book_detail.translator != '无' %}
-                            <div class="book_translator">译者: <span class="show">{{book_detail.translator}}</span></div>
-                        {% endif %}
-                        <div class="book_publisher_date">出版年: <span class="show">{{book_detail.publisher_date}}</span></div>
-                        <div class="book_page">页数: <span class="show">{{book_detail.page}}</span></div>
-                        <div class="book_price">定价: <span class="show">{{book_detail.price}}</span></div>
-                        <div class="book_binding">装帧: <span class="show">{{book_detail.binding}}</span></div>
-                        <div class="book_Isbn">ISBN: <span class="show">{{book_detail.Isbn}}</span></div>
-                    </div>
-                </div>
-                <div id="interest_sectl">
-                    <div class="rate_logo">悦读评分</div>
-                    <div class="score_to_show">{{book_detail.score}}</div>
-                    <div class="score_rule">
-                        <div class="five_star">
-                            <div class="star">5星</div>
-                            <div class="power"></div>
-                            <div class="perc">62.8%</div>
-                        </div>
-                        <div class="four_star">
-                            <div class="star">4星</div>
-                            <div class="power"></div>
-                            <div class="perc">29.0%</div>
-                        </div>
-                        <div class="there_star">
-                            <div class="star">3星</div>
-                            <div class="power"></div>
-                            <div class="perc">8.4%</div>
-                        </div>
-                        <div class="two_star">
-                            <div class="star">2星</div>
-                            <div class="power"></div>
-                            <div class="perc">0.6%</div>
-                        </div>
-                        <div class="one_star">
-                            <div class="star">1星</div>
-                            <div class="power"></div>
-                            <div class="perc">0.2%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="other">
-                <div class = "remark">
-                    <input type="submit" class="minisubmit " value="想读" title="">
-                    <input type="submit" class="minisubmit " value="在读" title="">
-                    <input type="submit" class="minisubmit " value="读过" title="">         
-                    <div id="smallremark">评价</div>
-                    <span id="rating"> 
-                        <span id="stars" data-solid="https://img3.doubanio.com/f/shire/5a2327c04c0c231bced131ddf3f4467eb80c1c86/pics/rating_icons/star_onmouseover.png" data-hollow="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" data-solid-2x="https://img3.doubanio.com/f/shire/7258904022439076d57303c3b06ad195bf1dc41a/pics/rating_icons/star_onmouseover@2x.png" data-hollow-2x="https://img3.doubanio.com/f/shire/95cc2fa733221bb8edd28ad56a7145a5ad33383e/pics/rating_icons/star_hollow_hover@2x.png">
-
-                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-1">
-                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star1" width="16" height="16">
-                        </a>
-                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-2">
-                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star2" width="16" height="16">
-                        </a>
-                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-3">
-                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star3" width="16" height="16">
-                        </a>
-                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-4">
-                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star4" width="16" height="16">
-                        </a>
-                        <a href="https://www.baidu.com" class="j a_show_login" name="pbtn-1082154-5">
-                            <img src="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/star_hollow_hover.png" id="star5" width="16" height="16">
-                        </a>
-                        </span>
-                    </span>
-                </div>
-                <div class = "share">
-                    <div class="sharelabel"><a href = "https://www.baidu.com">写笔记</a></div>
-                    <div class="sharelabel"><a href = "https://www.baidu.com">写书评</a></div>
-                    <div class="sharelabel"><a href = "https://www.baidu.com">分享到</a></div>
-                </div>
-                <div class = "bookintro">
-                    <div class="guide">内容简介  ......</div>
-                    <p class="cont">{{book_detail.content_intro}}</p>
-                </div>
-                <div class = "authorintro">
-                    <div class="guide">本书目录  ......</div>
-                    <p class="cont">{{book_detail.directory}}</p>                
-                </div>
-                <div class = "booklabel">
-                    <div class="guide">本书标签  ......</div>
-                    <p class="cont">{{book_detail.label}}</p>              
-                </div>
-            </div>
-        </div>
-        <div class="aside">售书信息</div>
-    </div>
-    <div id="footer">editor : 清华大学软件学院   Mzj马子俊  Yj杨景  Yky于科屹</div>
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <!--
+  更多
+<a class="jiathis_counter_style"></a>-->
 </div>
+<!-- JiaThis Button END -->
+<div class='container content'>
+  <div class='book-intro row'>
+    <div class="book-picture col-xs-12 col-sm-4">
+      <h2 class="book_title">{{book_detail.title}}</h2>
+      <img src={{book_detail.cover_url}} alt={{book_detail.title}}/>
+    </div>
+    <div class="book-info col-xs-12 col-sm-4">
+      <h3 class="information">图书信息</h3>
+      <div class="book_author">作者:&nbsp;<span>{{book_detail.author}}</span></div>
+      <div class="book_publisher">出版社:&nbsp;<span>{{book_detail.publisher}}</span></div>
+      <div class="book_translator">译者:&nbsp;<span>{{book_detail.translator}}</span></div>
+      <div class="book_publisher_date">出版年:&nbsp;<span>{{book_detail.publisher_date}}</span></div>
+      <div class="book_page">页数:&nbsp;<span>{{book_detail.page}}</span></div>
+      <div class="book_price">定价:&nbsp;<span>{{book_detail.price}}</span></div>
+      <div class="book_binding">装帧:&nbsp;<span>{{book_detail.binding}}</span></div>
+      <div class="book_Isbn">ISBN:&nbsp;<span>{{book_detail.Isbn}}</span></div>
+    </div>
+    <div class="book-score col-xs-12 col-sm-4">
+      <div class="rate_logo">悦读评分</div>
+      <div class="score_to_show">{{book_detail.score}}</div>
+      <div class="score_rule">
+        <div class="five_star">
+          <div class="star">5星</div>
+          <div class="perc">{{ five_star }}</div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"  aria-valuemin="0" aria-valuemax="1" style="min-width: 2em; width: {{ five_star }}"></div>
+          </div>
+        </div>
+        <div class="four_star">
+          <div class="star">4星</div>
+          <div class="perc">{{ four_star }}</div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"  aria-valuemin="0" aria-valuemax="1" style="min-width: 2em; width: {{ four_star }}"></div>
+          </div>
+        </div>
+        <div class="there_star">
+          <div class="star">3星</div>
+          <div class="perc">{{ there_star }}</div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="1" style="min-width: 2em; width: {{ there_star }}"></div>
+          </div>
+        </div>
+        <div class="two_star">
+          <div class="star">2星</div>
+          <div class="perc">{{ two_star }}</div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="1" style="min-width: 2em; width: {{ two_star }}"></div>
+          </div>
+        </div>
+        <div class="one_star">
+          <div class="star">1星</div>
+          <div class="perc">{{ one_star }}</div>
+          <div class="progress">
+            <div>
+              <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"  aria-valuemin="0" aria-valuemax="1" style="min-width: 2em; width: {{ one_star }}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3 class="label-head">书籍标签</h3>
+  <div class="label-set row">
+    {% for label in book_labels %}
+    <div class="book-label">
+      <a href = "{% url 'laber_search' laber_title=label %}">{{ label }}</a>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="book-remark">
+    <div class = "share">
+      <a href = "{% url 'note_book' note_book_id=book_detail.book_id %}">写笔记</a>
+      <a href = "{% url 'comment' book_id=book_detail.book_id %}">写书评</a>
+    </div>
+  </div>
+  <div class="book-summary row">
+    <div class="book-content col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">内容简介  ......</h3>
+        </div>
+        <div class="panel-body">
+          <p class="cont">{{book_detail.content_intro}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="book-directory col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-1">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">本书目录  ......</h3>
+        </div>
+        <div class="panel-body">
+          <p class="cont">{{book_detail.directory}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comment-show row">
+    <p class="book-comment">关于《{{ book_detail.title}}》的书评：</p>
+    <ul class="book-comment-list col-xs-12 col-sm-10 col-sm-offset-1">
+    {% for comment in comment_list %}
+    <li>
+      <div class="book-comment-info">
+        <p>{{ comment.comment_user }}&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.comment_title }}&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.comment_rate }}分</p>
+      </div>
+      <div class="book-comment-content">
+        <p style="text-indent: 2em">{{ comment.comment_content }}</p>
+      </div>
+      <span class="reply"><a href="{% url 'comment_reply' comment_id=comment.comment_id %}">我要回应/查看回应</a></span></p>
+    </li>
+    {% endfor %}
+    </ul>
+    {% if size > 3 %}
+      <a class="book-comment-more col-xs-12 col-sm-10 col-sm-offset-1" href="{% url 'comment_detail' book_id=book_detail.book_id %}">>>>更多书评</a>
+    {% endif %}
+  </div>    
+  <div class="book-notes row">
+    <p class="book-note">关于《{{book_detail.title}}》的读书笔记:</p>
+    <ul class="book-note-list col-xs-12 col-sm-10 col-sm-offset-1">
+    {% for nt in notes %}
+      <li>
+        <div class="book-note-info">
+          <p>{{nt.author}}&nbsp;&nbsp;&nbsp;&nbsp;第{{nt.chapter}}张 第{{nt.page}}页</p>
+        </div>
+        <div class="book-note-content">
+          <p style="text-indent: 2em">{{nt.content}}</p>
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+    {% if length > 3 %}
+    <a class="book-note-more col-xs-12 col-sm-10 col-sm-offset-1" href="{% url 'note_detail' note_book_id=book_id %}">>>>更多笔记</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+{% block js_link %}
+<script src="{% static 'js/detail.js' %}"></script>
+<script type="text/javascript" id="bdshare_js" data="type=slide&img=7&uid=354335" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
 {% endblock %}

@@ -1,191 +1,186 @@
-#wrapper{
-    width:950px;
-    margin:0 auto;
+.content{
+  margin-top：20px;
 }
-.detail_title {
-    word-wrap: break-word;
-    font-size: 25px;
-    font-weight: bold;
-    color: #494949;
-    text-align:left;
+
+.book-picture{
+  text-align: center;
+
 }
-.clear{
-    clear:both;
-    line-height:0;
-    font-size:0;
+
+#ckepop{
+  position: fixed;
+  top: 50px;
+  left: 10px;
 }
-#content{
-    margin-top:-10px;
+
+.book-picture img{
+  width: 180px;
+  height: 250px;
 }
-.article{
-    float: left;
-    width: 590px;
-    padding-right: 40px;
+
+.book-info h3{
+  font-size: 18px;
+  text-align: center;
 }
-.subjectwrap{
-    word-break: break-all;
-    float:none;
-    width:auto;
-    position:relative;
-    margin-bottom:15px;
-    display:block;
-    font: 14px Arial, Helvetica, sans-serif;
-    line-height: 150%;
-    color: #666666;
+.book-info > div{
+  margin: 10px;
+  text-align: center;
 }
-.subject{
-    margin: 2px 0 0 0;
-    float:left;
-    width:415px;
+
+.book-info > div span{
+  color: orangered;
 }
-#mainpic {
-    float: left;
-    text-align: center;
-    margin: 0 12px 0 0;
-    max-width: 120px;
-    overflow: hidden;
+
+.book-score{
+  margin-top: 20px;
 }
-#mainpic a img{
-    margin-bottom:10px;
-    width:100%;
-    height:100%;
+
+.book-score .rate_logo{
+  text-align: center;
+  font-size: 18px;
 }
-#info {
-    float: left;
-    max-width: 248px;
-    word-wrap: break-word;
+
+.book-score .score_to_show{
+  text-align: center;
+  font-size: 18px;
+  color: orangered;
 }
-#info .show{
-    color: black;
+
+.book-score .star{
+  float: left;
 }
-#interest_sectl{
-    float: left;
-    width: 155px;
-    margin: 2px 0 0 0;
-    padding: 0 0 0 15px;
-    border-left: 1px solid #eaeaea;
-    color: #9b9b9b;
+
+.book-score .perc{
+  float: right;
 }
-#interest_sectl .score_to_show{
-    color: #494949;
-    padding: 0;
-    margin:10px 10px 10px 0px;
-    min-width: 30%;
-    font-size: 28px;
+
+.book-score .progress{
+  clear: both;
 }
-#interest_sectl .star, .power, .perc{
-    float:left;
+
+h3.label-head{
+  font-size: 18px;
+  margin-bottom: 20px;
 }
-#interest_sectl .five_star .power{
-    margin: 3px 4px;
-    height: 10px;
-    width: 63px;
-    background: #ffd596 none repeat scroll 0 0;
+
+.label-set .book-label{
+  display: inline-block;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: black;
 }
-#interest_sectl .four_star, .there_star, .two_star, .one_star{
-    clear:both;
+
+.book-label a{
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: green;
 }
-#interest_sectl .four_star .power{
-    margin: 3px 4px;
-    height: 10px;
-    width: 30px;
-    background: #ffd596 none repeat scroll 0 0;
+
+.rating .rate{
+  font-size: 18px;
 }
-#interest_sectl .there_star .power{
-    margin: 3px 4px;
-    height: 10px;
-    width: 8px;
-    background: #ffd596 none repeat scroll 0 0;
+.rating .score-star{
+  font-size: 18px;
+  color: orangered;
 }
-#interest_sectl .two_star .power{
-    margin: 3px 4px;
-    height: 10px;
-    width: 0px;
-    background: #ffd596 none repeat scroll 0 0;
+
+.book-remark .share{
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 5;
 }
-#interest_sectl .one_star .power{
-    margin: 3px 4px;
-    height: 10px;
-    width: 0px;
-    background: #ffd596 none repeat scroll 0 0;
+
+.share a{
+  text-align: center;
+  display: inline-block;
+  color: white;
+  width: 60px;
+  padding: 30px 0px;
+  line-height: 0px;
+  border-radius: 30px;
+  background-color: green;
 }
-.other{
-    clear:both;
+
+.book-content{
+  margin-top: 20px;
 }
-.remark{
-    float: left;
-    width: 590px;
-    height: 20px;
-    background-color:aliceblue;
+.book-directory{
+  margin-top: 20px;
 }
-.aside{
-    float: left;
-    width: 300px;
-    height: 500px;
-    background-color:aliceblue;
+
+.book-comment-list li{
+  border: 2px solid #351B00;
+  margin: 20px;
 }
-#footer{
-    clear:both;
-    color:#999;
-    font-family: cursive;
-    font-size: 12px;
+
+.book-comment-list li::after{
+  content: '';
+  display: block;
+  clear: both;
 }
-#rating{
-    width: 200px;
+
+.book-comment, .book-note{
+  color: #351B00;
+  line-height: 24px;
+  font-size: 18px;
+  margin-left: 15px;
 }
-#smallremark{
-    width:40px;
-    float:left;
+
+.book-comment-info{
+  background-color: #351B00;
+  color: white;
 }
-.minisubmit{
-    float:left;
-    margin-left: 5px;
-    margin-right: 7px;
-    background-color:burlywood;
-    border:none;
+
+.book-comment-content{
+  color: #351B00;
+  margin: 10px;
 }
-.sharelabel{
-    width:50px;
-    float:left;
-    margin-left: 5px;
-    margin-right: 7px;
+
+.book-comment-more{
+  color: #351B00;
+  text-align: right;
 }
-.sharelabel a:link,
-.sharelabel a:visited,
-.sharelabel a:active
-{
-    color: blue;
+
+.book-comment-more:hover{
+  color: #351B00;
 }
-.sharelabel a:hover
-{
-    color: white;
-    background-color: blue;
+
+.book-note-list li{
+  border: 2px solid #351B00;
+  margin: 20px;
 }
-.bookintro{
-    width:500px;
-    background-color: antiquewhite;
-    float:left;
-    margin-top: 2px;
-    margin-bottom: 10px;
+
+.book-note-list li::after{
+  content: '';
+  display: block;
+  clear: both;
 }
-.authorintro{
-    width:500px;
-    background-color: antiquewhite;
-    float:left;
-    margin-top: 2px;
-    margin-bottom: 10px;
+
+.book-note-info{
+  background-color: #351B00;
+  color: white;
 }
-.booklabel{
-    width:500px;
-    background-color: antiquewhite;
-    float:left;
-    margin-top: 2px;
-    margin-bottom: 10px;
+
+.book-note-content{
+  color: #351B00;
+  margin: 10px;
 }
-.guide{
-    color: green;
+
+.book-note-more{
+  color: #351B00;
+  text-align: right;
 }
-.cont{
-    font-family: cursive;
-    font-size: 13px;
+
+.book-note-more:hover{
+  color: #351B00;
 }
+
+.reply{
+  float: right;
+  padding-right: 5px;
+}
+
+

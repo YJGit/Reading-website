@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment Reply</title>
+</head>
+<body>
+    <div class="comment">
+        <p><strong>题目：{{ comment.comment_title }}</strong></p>
+        <p><strong>评分：{{ comment.comment_rate }}</strong></p>
+        <p><strong>内容：{{ comment.comment_content }}</strong></p>
+        <p><strong>用户：{{ comment.comment_user }}</strong></p>
+        <p>{{comment.comment_time}}</p>
+    </div>
+
+    <div class="replys">
+        {% for reply in replys %}
+         <ul>
+          <li>{{reply.author}}</li>
+          <li>{{reply.content}}</li>
+          <li>{{reply.time}}</li>
+         </ul>
+        {% endfor %}
+    </div>
+
+    <div class="your-reply">
+        <p>你的回应: </p>
+        <form method="post" class="reply-form" action=".">
+            {% csrf_token %}
+            {{form.content}}
+            {{form.content.errors}}
+        <div class="reply-button">
+            <button type="submit">加上去</button>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

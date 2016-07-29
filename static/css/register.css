@@ -1,32 +1,71 @@
-form{
-    width: 300px;
-    padding: 20px;
-    border: 6px solid palevioletred;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+body{
+  background-color: #63C51C;
 }
+
+.navbar-inverse{
+  position: static;
+}
+
+.register{
+  margin-top: 10px;
+}
+
 h2{
-    text-align: center;
+  text-align: center;
+  margin-bottom: 20px;
 }
-input{
-    display: block;
-    width: 100%;
-    margin: 20px 0;
-    height: 30px;
-    border: 1px solid palevioletred;
+
+label{
+  display: block;
+  text-align: left;
 }
-#id_picture{
-    border: none;
+
+input[type="text"], input[type="email"], input[type="password"]{
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+  height: 30px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid green;
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover{
+  border: 1px solid yellow;
+  cursor: pointer;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus{
+  border: 1px solid yellow;
+  cursor: text;
+}
+
+input[type="file"]{
+  margin: 20px 0;
 }
 input[type="submit"]{
-    border: none;
-    background-color: rgba(219, 112, 147, 0.5);
+  display: block;
+  width: 100%;
+  margin: 20px 0 40px;
+  height: 30px;
+  border: none;
+  background-color: white;
+  font-size: 18px;
 }
+
 input[type="submit"]:hover{
-    background-color: rgba(219, 112, 147, 1);
+  background-color: #333;
+  color: white;
+  cursor: pointer;
 }
-body > ul{
-    color: red;
+
+.error{
+  background-color: #333;
+  border-radius: 10px;
+  margin: 10px auto 0;
+  width: 70%;
+  text-align: center;
+  color: red;
+  font-size: 18px;
+  color: white;
 }

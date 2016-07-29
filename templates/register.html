@@ -1,27 +1,35 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>用户注册</title>
-    <link rel="stylesheet" href="{% static "css/register.css" %}" />
-</head>
-<body>
-     {{ user_form_errors }}
+{% block title %}用户注册{% endblock %}
+{% block css_link %}
+  <link rel="stylesheet" href="{% static "css/register.css" %}" />
+{% endblock %}
+{% block search %}
+{% endblock %}
+{% block content %}
+   <div class="error">
      {{ profile_form_errors }}
-     <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
-         {% csrf_token %}
-         <h2>欢迎注册悦读网</h2>
-         <label for="id_username">用户名</label>
-         {{ user_form.username }}
-         <label for="id_password">密码</label>
-         {{ user_form.password }}
-         <label for="id_email">电子邮箱</label>
-         {{ user_form.email}}
-         <label for="id_picture">头像</label>
-         {{ profile_form.picture }}
-         <!-- Provide a button to click to submit the form. -->
-         <input type="submit" name="submit" value="注册" />
+     {{ user_form_errors }}
+   </div>
+   <div class="container register">
+     <form class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3"
+           id="user_form" method="post" action="/register/" enctype="multipart/form-data">
+       {% csrf_token %}
+       <h2>加入悦读&nbsp;&nbsp;成为爱书者的一员</h2>
+       <label for="id_username">昵称(必填)</label>
+       {{ user_form.username }}
+       <label for="id_password">密码(必填)</label>
+       {{ user_form.password }}
+       <label for="id_email">电子邮箱(可选)</label>
+       {{ user_form.email}}
+       <label for="id_address">地址(可选)</label>
+       {{ profile_form.address }}
+       <label for="id_picture">头像(可选)</label>
+       {{ profile_form.picture }}
+       <!-- Provide a button to click to submit the form. -->
+       <input type="submit" name="submit" value="注册" />
      </form>
-</body>
-</html>
+   </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

@@ -20,6 +20,7 @@ try:
             label1 = ''
             content_intro1 = ''
             directory1 = ''
+            score_star = ''
             while lineContent != '\n' and lineContent:
                 if title1 == '':
                     title1 = lineContent
@@ -93,15 +94,20 @@ try:
                     if directory1[len(directory1) - 1] == '\n':
                         directory1 = directory1[:-1]
                     #print(directory1)
+                elif score_star == '':
+                    score_star = lineContent
+                    if score_star[len(score_star) - 1] == '\n':
+                        score_star = score_star[:-1]
+
                 lineContent = file_obj.readline()
             book_id1 += 1
             print(book_id1)
             #加入数据库
-            book.objects.create(title = title1, cover_url = cover_url1, score = score1, author = author1,
+            book.objects.get_or_create(title = title1, cover_url = cover_url1, score = score1, author = author1,
                                 publisher = publisher1, translator = translator1, publisher_date = publisher_date1,
                                 page = page1, price = price1, binding = binding1, Isbn = Isbn1,
                                 label = label1, content_intro = content_intro1, directory = directory1,
-                                book_id = book_id1)
+                                book_id = book_id1, score_star=score_star)
         else:
             break
 

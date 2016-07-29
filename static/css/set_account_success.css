@@ -1,13 +1,25 @@
-div{
+body{
+  background-color: cyan;
+}
+
+.set-account-success{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-p{
+
+.set-account-success p{
     font-size: 24px;
 }
-a{
-    color: palevioletred;
+
+.set-account-success a{
+    color: blue;
     text-decoration: none;
+}
+
+footer{
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
 }

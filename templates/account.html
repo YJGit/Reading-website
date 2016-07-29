@@ -1,25 +1,31 @@
-<!doctype html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>账户设置</title>
-    <link rel="stylesheet" href="{% static "css/account.css" %}"
-</head>
-<body>
-    <form id="user_form" method="post" action="/account/{{ user.username }}/" enctype="multipart/form-data">
+{% block title %}账户设置{% endblock %}
+{% block css_link %}
+  <link rel="stylesheet" href="{% static "css/account.css" %}" />
+{% endblock %}
+{% block search %}
+{% endblock %}
+{% block content %}
+  <div class="container account">
+    <form id="user_form" method="post" action="/account/{{ user.username }}/" enctype="multipart/form-data"
+       class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
          {% csrf_token %}
          <h2>账户设置</h2>
-         <label for="new_username">修改用户名</label>
+         <label for="new_username">修改用户名(若不修改可不必填)</label>
          <input type="text" name="new_username" value=""/>
-         <label for="new_password">修改密码</label>
-         <input type="text" name="new_password" value=""/>
-         <label for="new_email">修改电子邮箱</label>
-         <input type="text" name="new_email" value=""/>
-         <label for="new_picture">重置头像</label>
+         <label for="new_password">修改密码(若不修改可不必填)</label>
+         <input type="password" name="new_password" value=""/>
+         <label for="new_email">修改电子邮箱(若不修改可不必填)</label>
+         <input type="email" name="new_email" value=""/>
+         <label for="new_address">修改地址(若不修改可不必填)</label>
+         <input type="text" name="new_address" value=""/>
+         <label for="new_picture">重置头像(若不修改可不必重置)</label>
          <input type="file" name="new_picture">
          <!-- Provide a button to click to submit the form. -->
          <input type="submit" name="submit" value="修改账户" />
-     </form>
-</body>
+    </form>
+  </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

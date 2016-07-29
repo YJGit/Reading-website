@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+更多笔记
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="book-notes row">
+    <p class="book-note">更多读书笔记:</p>
+    <ul class="book-note-list col-xs-12 col-sm-10 col-sm-offset-1">
+    {% for nt in notes %}
+      <li>
+        <div class="book-note-info">
+          <p>{{nt.author}}&nbsp;&nbsp;&nbsp;&nbsp;第{{nt.chapter}}张 第{{nt.page}}页</p>
+        </div>
+        <div class="book-note-content">
+          <p style="text-indent: 2em">{{nt.content}}</p>
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}写写笔记{% endblock %}
+{% block css_link %}
+  <link rel="stylesheet" href="{% static "css/note.css" %}" />
+{% endblock %}
+{% block search %}
+{% endblock %}
+{% block content %}
+  <div class="note container">
+    <form id="note-form" class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1" action="." method="post">
+      {% csrf_token %}
+      <div class="notes_title"><h1>《{{note_book_title}}》— 读书笔记</h1></div>
+      <div class="book_page">页&nbsp;码:
+        <span>第
+            {{form.page}}
+            {{form.page.errors}}
+            页</span>
+      </div>
+      <div class="chapter">章&nbsp;节&nbsp;名:
+        {{form.chapter}}
+        {{form.chapter.errors}}
+      </div>
+      <div class="item_content">
+        <label>笔记内容: </label>
+        <div class="editor">
+            {{form.content}}
+            {{form.content.errors}}
+        </div>
+      </div>
+      <div class="item_submit">
+        <span class="bn_flat">
+            <input class="btn btn-primary" value="发表" name="publish" type="submit">
+        </span>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block js_link %}
+<script src="{% static 'js/note.js' %}"></script>
+{% endblock %}
