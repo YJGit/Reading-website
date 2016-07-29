@@ -62,7 +62,9 @@ def detail(request, book_id):
     if length > 3:
         nt = nt[length - 3: ]
     if flag == 1:
-        Comment.objects.create(comment_rate = message2, comment_title = message1, comment_content = message3, comment_user = message4, comment_book = message5)
+        Comment.objects.create(comment_rate = message2, comment_title = message1, comment_content = message3, comment_user = message4, comment_book = message5,
+                               comment_time = "" + datetime.datetime.now().strftime("%Y-%m-%d %H:%I:%S"),
+                               comment_id = "" + datetime.datetime.now().strftime("%Y-%m-%d %H:%I:%S") + message4)
     try:
         comment_list = Comment.objects.filter(comment_book = book_detail.title)
     except:
@@ -173,16 +175,20 @@ def notes(request, note_book_id):
             there_star = '0%'
             two_star = '0%'
             one_star = '0%'
-        return render(request, 'detail.html', {'notes': my_notes, 'title': bk.title,
+
+        response = render(request, 'detail.html', {'notes': my_notes, 'title': bk.title,
                                                'book_detail': bk, 'book_labels': bk.label.split(),
                       'length': length, 'book_id': bk.book_id, 'comment_list': comment_list, 'size': size,
                                                'five_star': five_star,
                                                'four_star': four_star, 'there_star': there_star,
                                                'two_star': two_star, 'one_star': one_star,})
+        response.set_cookie('postToken',value='disable')
+        return response
     else:
         form = noteForm()
-
-    return render(request, 'note.html', {'form': form, 'note_book_title': bk.title,})
+    response = render(request ,'note.html', {'form': form, 'note_book_title': bk.title,})
+    response.set_cookie("postToken", value='allow')
+    return response
 
 def note_detail(request, note_book_id):
     bk = book.objects.get(book_id=note_book_id)
@@ -194,10 +200,11 @@ def comment_detail(request, book_id):
     comment_list = Comment.objects.filter(comment_book = book_detail.title)
     return render(request, 'comment_detail.html', {'comment_list': comment_list,})
 
+@login_required
 def cment_reply(request, comment_id):
     params = request.POST if request.method == 'POST' else None
     form = comment_replyForm(params)
-    comments = Comment.objects.filter(comment_id=comment_id)[0]
+    comments = Comment.objects.get(comment_id=comment_id)
     if form.is_valid():
         reply = form.save(commit=False)
         reply.author = request.user
@@ -222,7 +229,8 @@ def contact(request):
             errors.append('Enter book notes.')
         if not errors:
             return HttpResponseRedirect('/contact/thanks/')
-    return render_to_response('note.html', {'errors': errors})
+    return render_to_response('note.html',
+        {'errors': errors})
 
 def register(request):
     context_dict = {}
@@ -287,9 +295,9 @@ def set_account(request, username_slug):
         new_email = request.POST.get('new_email')
         if new_email:
             old_user.email = new_email
-        new_address = request.POST.get('new_address')
+        new_address = request.POST.get('new_address')    
         if new_address:
-            old_user.address = new_address
+            old_user.address = new_address  
         old_user_profile.user = old_user
         if 'new_picture' in request.FILES:
             old_user_profile.picture = request.FILES['new_picture']

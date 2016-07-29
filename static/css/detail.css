@@ -7,6 +7,12 @@
 
 }
 
+#ckepop{
+  position: fixed;
+  top: 50px;
+  left: 10px;
+}
+
 .book-picture img{
   width: 180px;
   height: 250px;

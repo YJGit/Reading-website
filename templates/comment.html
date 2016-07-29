@@ -22,6 +22,14 @@
           </div>
           <input type="text" value = "{{user.username}}" name="user" id = "notshow1"/>
           <input type="text" value = "{{comment_detail.title}}" name="bkname" id = "notshow2"/>
+          <div id = "rate">
+              <label class = "field">评价:</label>
+              <label class = "ch"><input name="rev_rating" type="radio" value="1">很差:</label>
+              <label class = "ch"><input name="rev_rating" type="radio" value="2">较差:</label>
+              <label class = "ch"><input name="rev_rating" type="radio" value="3">还行:</label>
+              <label class = "ch"><input name="rev_rating" type="radio" value="4">推荐:</label>
+              <label class = "ch"><input name="rev_rating" type="radio" value="5">力荐:</label>
+          </div>
           <div class="comment-content">
             <label>正文</label>
             <textarea id="zhengwen" name="rev_text"></textarea>
