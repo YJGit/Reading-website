@@ -7,7 +7,23 @@
 {% block search %}
 {% endblock %}
 {% block content %}
-  <div class="container account">
+  <div class="container account-info">
+    <h2>账户信息</h2>
+    <div class="profile">
+      {% load user_img %}
+      {% get_user_img user %}
+    </div>
+    <p class="name">{{user.username}}</p>
+    {% if user.email %}
+    <p class="email">{{user.email}}</p>
+    {% else %}
+    <p class="email">您尚未设置邮箱</p>
+    {% endif %}
+    {% load user_address %}
+    {% get_user_address user %}
+    <p class="start-setting btn btn-primary">修改账户</p>
+  </div>
+  <div class="container account-setting">
     <form id="user_form" method="post" action="/account/{{ user.username }}/" enctype="multipart/form-data"
        class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
          {% csrf_token %}
@@ -23,9 +39,12 @@
          <label for="new_picture">重置头像(若不修改可不必重置)</label>
          <input type="file" name="new_picture">
          <!-- Provide a button to click to submit the form. -->
-         <input type="submit" name="submit" value="修改账户" />
+         <input type="submit" name="submit" value="确认修改" />
     </form>
   </div>
 {% endblock %}
 {% block footer %}
+{% endblock %}
+{% block js_link %}
+  <script src="{% static 'js/account.js' %}"></script>
 {% endblock %}

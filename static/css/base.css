@@ -36,6 +36,10 @@ ul, ol{
   border: 2px solid white;
 }
 
+.navbar-inverse .user-profile-default{
+  display: none;
+}
+
 @media all and (max-width: 767px){
   .user-profile{
     margin-top: 0px;

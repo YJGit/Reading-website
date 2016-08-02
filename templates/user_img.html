@@ -1,5 +1,7 @@
 {% if user_profile %}
     {% if user_profile.picture %}
-        <img class="user-profile" src="/media/{{ user_profile.picture }}"/>
+      <img class="user-profile" src="/media/{{ user_profile.picture }}"/>
+    {% else %}
+      <p class="user-profile-default">您尚未设置头像</p>
     {% endif %}
 {% endif %}

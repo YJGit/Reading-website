@@ -46,7 +46,6 @@ class comment_reply(models.Model):
     content = models.CharField(max_length=250)
     time = models.CharField(max_length=50)
     comment_id = models.CharField(max_length=100, default="")
-
     def __str__(self):
         return self.author
 

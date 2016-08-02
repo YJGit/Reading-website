@@ -1,38 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Comment Reply</title>
-</head>
-<body>
-    <div class="comment">
-        <p><strong>题目：{{ comment.comment_title }}</strong></p>
-        <p><strong>评分：{{ comment.comment_rate }}</strong></p>
-        <p><strong>内容：{{ comment.comment_content }}</strong></p>
-        <p><strong>用户：{{ comment.comment_user }}</strong></p>
-        <p>{{comment.comment_time}}</p>
-    </div>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+回应书评
+{% endblock %}
 
-    <div class="replys">
-        {% for reply in replys %}
-         <ul>
-          <li>{{reply.author}}</li>
-          <li>{{reply.content}}</li>
-          <li>{{reply.time}}</li>
-         </ul>
-        {% endfor %}
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/comment_reply.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="remark-on-comment container">
+    <h3>读者间的交流，是对作品内涵的二次创作~</h3>
+    <h4>原始评论：</h4>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ comment.comment_user }}&nbsp;&nbsp;{{ comment.comment_title }}&nbsp;&nbsp;{{ comment.comment_rate }}分</h3>
+      </div>
+      <div class="panel-body">
+        {{ comment.comment_content }}
+      </div>
     </div>
-
+    <h4>大家意见：</h4>
+    {% for reply in replys %}
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{reply.author}}&nbsp;&nbsp;{{reply.time}}</h3>
+        </div>
+        <div class="panel-body">
+          {{ reply.content }}
+        </div>
+      </div>
+    {% endfor %}
     <div class="your-reply">
-        <p>你的回应: </p>
+        <h4>你的回应: </h3>
         <form method="post" class="reply-form" action=".">
             {% csrf_token %}
             {{form.content}}
             {{form.content.errors}}
         <div class="reply-button">
-            <button type="submit">加上去</button>
+            <button type="submit" class="btn btn-danger">加上去</button>
         </div>
         </form>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
+{% block js_link %}
+  <script src="{% static 'js/comment_reply.js' %}"></script>
+{% endblock %}

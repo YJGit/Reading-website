@@ -1,0 +1,7 @@
+{% if user_profile %}
+    {% if user_profile.address %}
+      <p class="user-address">{{ user_profile.address }}</p>
+    {% else %}
+      <p class="user-address">您尚未设置地址</p>
+    {% endif %}
+{% endif %}

@@ -2,12 +2,39 @@ body{
   background-color: rgb(0, 215, 215);
 }
 
+.account-info{
+  text-align: center;
+}
+
+.account-info .profile{
+  text-align: center;
+}
+
+.account-info .user-profile{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  border: 3px solid white;
+  float: none;
+}
+
+.account-info p{
+  text-align: center;
+  margin: 20px 0px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .navbar-inverse{
   position: static;
 }
 
-.account{
+.account-info{
   margin-top: 10px;
+}
+
+.account-setting{
+  display: none;
 }
 
 h2{
@@ -43,6 +70,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 input[type="file"]{
   margin: 20px 0;
 }
+
 input[type="submit"]{
   display: block;
   width: 100%;

@@ -295,9 +295,10 @@ def set_account(request, username_slug):
         new_email = request.POST.get('new_email')
         if new_email:
             old_user.email = new_email
-        new_address = request.POST.get('new_address')    
+        new_address = request.POST.get('new_address')
+        print(new_address)
         if new_address:
-            old_user.address = new_address  
+            old_user_profile.address = new_address
         old_user_profile.user = old_user
         if 'new_picture' in request.FILES:
             old_user_profile.picture = request.FILES['new_picture']

@@ -29,7 +29,6 @@ class comment_replyForm(forms.ModelForm):
     content = forms.CharField(max_length=500, widget=forms.Textarea)
     time = forms.CharField(required=False)
     comment_id = forms.CharField(max_length=100, required=False)
-
     class Meta:
         model = comment_reply
         fields = ('content',)

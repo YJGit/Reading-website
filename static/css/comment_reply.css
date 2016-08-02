@@ -1,0 +1,11 @@
+.remark-on-comment h3{
+  text-align: center;
+}
+
+.reply-button{
+  text-align: right;
+}
+
+.reply-button button{
+  margin: 10px 0;
+}
