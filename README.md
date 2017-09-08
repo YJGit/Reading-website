@@ -1,11 +1,12 @@
 ## 简介
 - 模仿豆瓣写的读书网站
 - 使用python的django框架
+- 大二小学期的作品
 
 ## 下载运行
-1. '''git clone git@github.com:YJGit/reading_website.git'''  
-2. 进入reading_website目录，打开命令行，运行'''python manage.py runserver 0.0.0.0:8000'''
-3. 打开浏览器，输入http://localhost:8000/，即可看到网站
+1. ```git clone git@github.com:YJGit/reading_website.git```  
+2. 进入reading_website目录，打开命令行，运行```python manage.py runserver 0.0.0.0:8000```
+3. 打开浏览器，输入```http://localhost:8000/```，即可看到网站
 
 ## 效果图
 首页:  
@@ -21,5 +22,5 @@
 ![](http://ouebtut1h.bkt.clouddn.com/reading_web_book_detail.PNG)  
 
 ## 合作者
-马子俊   
-于科屹
+马子俊 清华大学软件学院 
+于科屹 清华大学软件学院
