@@ -50,7 +50,7 @@ class comment_reply(models.Model):
         return self.author
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     address = models.CharField(max_length = 100, blank=True)
     def __str__(self):
